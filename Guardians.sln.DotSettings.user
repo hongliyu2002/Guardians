@@ -3,4 +3,6 @@
   &lt;Assembly Path="C:\Users\hongl\.nuget\packages\fluxera.enumeration\7.1.3\lib\net7.0\Fluxera.Enumeration.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Users\hongl\.nuget\packages\fluxera.stronglytypedid\7.1.4\lib\net7.0\Fluxera.StronglyTypedId.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Users\hongl\.nuget\packages\serilog.aspnetcore\7.0.0\lib\net7.0\Serilog.AspNetCore.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Users\hongl\.nuget\packages\fluxera.repository.entityframeworkcore\7.2.3\lib\net7.0\Fluxera.Repository.EntityFrameworkCore.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Users\hongl\.nuget\packages\fluxera.extensions.hosting.modules.application.contracts\7.2.5\lib\net7.0\Fluxera.Extensions.Hosting.Modules.Application.Contracts.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>

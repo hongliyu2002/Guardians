@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Guardians.Infrastructure.Migrations
 {
     [DbContext(typeof(GuardiansDbContext))]
-    [Migration("20230521034959_Init")]
+    [Migration("20230521075955_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -93,11 +93,6 @@ namespace Guardians.Infrastructure.Migrations
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("ID");
 

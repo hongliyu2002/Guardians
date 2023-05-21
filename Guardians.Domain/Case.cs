@@ -11,8 +11,6 @@ public sealed class Case : AggregateRoot<Case, CaseId>, IAuditedObject, ISoftDel
     public SceneId SceneID { get; set; } = default!;
     
     public Scene Scene { get; set; } = default!;
-    
-    public string Title { get; set; } = default!;
 
     public string? Description { get; set; }
         
@@ -28,7 +26,7 @@ public sealed class Case : AggregateRoot<Case, CaseId>, IAuditedObject, ISoftDel
     
     public string? ReporterMobile { get; set; }
     
-    public CaseStatus Status { get; set; } = CaseStatus.Reviewing;
+    public CaseStatus Status { get; set; } = default!;
 
     public DateTimeOffset? CreatedAt { get; set; }
 

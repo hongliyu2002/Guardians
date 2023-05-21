@@ -19,7 +19,6 @@ public sealed class CaseConfiguration : IEntityTypeConfiguration<Case>
     {
         builder.Property(c => c.ID).ValueGeneratedOnAdd();
         builder.HasOne(c => c.Scene).WithMany().HasForeignKey(c => c.SceneID).OnDelete(DeleteBehavior.Restrict);
-        builder.Property(c => c.Title).HasMaxLength(100);
         builder.Property(c => c.Description).HasMaxLength(500);
         builder.Property(c => c.Address).HasMaxLength(200);
         builder.Property(c => c.PhotoUrl).HasMaxLength(500).IsUnicode(false);

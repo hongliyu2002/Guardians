@@ -30,6 +30,7 @@ public sealed class GuardiansServiceModule : ConfigureApplicationModule
         }
         else
         {
+            context.UseSwaggerUI();
             context.UseHsts();
         }
         context.UseHttpsRedirection();

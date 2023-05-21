@@ -9,8 +9,7 @@ public sealed class CaseValidator : AbstractValidator<Case>
     public CaseValidator()
     {
         RuleFor(caseObj => caseObj.SceneID).NotEmpty().WithMessage("场景编号不能为空。");
-        RuleFor(caseObj => caseObj.Title).NotEmpty().WithMessage("案件标题不能为空。").MaximumLength(100).WithMessage("案件标题不能超过100个字符。");
-        RuleFor(caseObj => caseObj.Description).MaximumLength(500).WithMessage("场景描述不能超过500个字符。");
+        RuleFor(caseObj => caseObj.Description).MaximumLength(500).WithMessage("描述不能超过500个字符。");
         RuleFor(caseObj => caseObj.Address).MaximumLength(200).WithMessage("地址不能超过200个字符。");
         RuleFor(caseObj => caseObj.PhotoUrl).MaximumLength(500).WithMessage("照片URL不能超过500个字符。");
         RuleFor(caseObj => caseObj.ReportedAt).NotEmpty().WithMessage("上报时间不能为空。");
