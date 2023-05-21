@@ -16,9 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Commands\" />
       <Folder Include="Events\" />
-      <Folder Include="Queries\" />
     </ItemGroup>
 
 </Project>

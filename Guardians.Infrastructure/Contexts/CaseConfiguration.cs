@@ -1,4 +1,5 @@
-﻿using Fluxera.Repository.EntityFrameworkCore;
+﻿using Fluxera.Enumeration.EntityFrameworkCore;
+using Fluxera.Repository.EntityFrameworkCore;
 using Guardians.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -29,6 +30,7 @@ public sealed class CaseConfiguration : IEntityTypeConfiguration<Case>
         builder.Property(c => c.LastModifiedBy).HasMaxLength(50);
         builder.Property(c => c.DeletedBy).HasMaxLength(50);
         builder.UseRepositoryDefaults();
+        builder.UseEnumeration(true);
         _callback?.Invoke(builder);
     }
 }

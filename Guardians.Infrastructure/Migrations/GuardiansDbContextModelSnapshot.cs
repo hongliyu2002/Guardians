@@ -87,9 +87,8 @@ namespace Guardians.Infrastructure.Migrations
                     b.Property<Guid>("SceneID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 

@@ -37,7 +37,7 @@ namespace Guardians.Infrastructure.Migrations
                     ReporterNo = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
                     ReporterName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ReporterMobile = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: true),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     LastModifiedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     DeletedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),

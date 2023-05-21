@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Guardians.Infrastructure.Migrations
 {
     [DbContext(typeof(GuardiansDbContext))]
-    [Migration("20230521075955_Init")]
+    [Migration("20230521083326_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -90,9 +90,8 @@ namespace Guardians.Infrastructure.Migrations
                     b.Property<Guid>("SceneID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 

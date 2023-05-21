@@ -1,4 +1,5 @@
-﻿using Fluxera.Repository.EntityFrameworkCore;
+﻿using Fluxera.Enumeration.EntityFrameworkCore;
+using Fluxera.Repository.EntityFrameworkCore;
 using Guardians.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -20,6 +21,7 @@ public sealed class SceneConfiguration : IEntityTypeConfiguration<Scene>
         builder.Property(s => s.ID).ValueGeneratedOnAdd();
         builder.Property(s => s.Title).HasMaxLength(100);
         builder.UseRepositoryDefaults();
+        builder.UseEnumeration(true);
         _callback?.Invoke(builder);
     }
 }
