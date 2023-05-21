@@ -22,7 +22,6 @@ public sealed class GuardiansServiceModule : ConfigureApplicationModule
     {
         context.Services.Configure<ProblemDetailsOptions>(options =>
                                                           {
-                                                              options.MapStatusCode<NotImplementedException>(HttpStatusCode.NotImplemented);
                                                               options.MapStatusCode<InvalidOperationException>(HttpStatusCode.MethodNotAllowed);
                                                               options.MapStatusCode<ValidationException>(HttpStatusCode.BadRequest, (httpContext, exception, httpStatusCode, problemDetailsFactory) =>
                                                                                                                                     {
