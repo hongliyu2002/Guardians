@@ -32,7 +32,7 @@ internal sealed class DeleteCaseCommandHandler : ICommandHandler<DeleteCaseComma
             var @case = await _repository.GetAsync(command.CaseId, cancellationToken).ConfigureAwait(false);
             if (@case == null || @case.IsDeleted)
             {
-                return Result.Fail(new ExceptionalError("CaseNotFound", new InvalidOperationException($"Case '{command.CaseId}' does not exist or has been deleted")));
+                return Result.Fail(new ExceptionalError("CaseNotFound", new FileNotFoundException($"Case '{command.CaseId}' does not exist or has been deleted")));
             }
             @case.IsDeleted = true;
             await _repository.UpdateAsync(@case, cancellationToken).ConfigureAwait(false);

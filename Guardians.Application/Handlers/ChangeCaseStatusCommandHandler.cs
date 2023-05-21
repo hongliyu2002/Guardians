@@ -37,7 +37,7 @@ internal sealed class ChangeCaseStatusCommandHandler : ICommandHandler<ChangeCas
             var @case = await _repository.GetAsync(command.CaseId, cancellationToken).ConfigureAwait(false);
             if (@case == null || @case.IsDeleted)
             {
-                return Result.Fail<CaseDto>(new ExceptionalError("CaseNotFound", new InvalidOperationException($"Case '{command.CaseId}' does not exist or has been deleted")));
+                return Result.Fail<CaseDto>(new ExceptionalError("CaseNotFound", new FileNotFoundException($"Case '{command.CaseId}' does not exist or has been deleted")));
             }
             @case.Status = command.Input.Status;
             await _repository.UpdateAsync(@case, cancellationToken).ConfigureAwait(false);

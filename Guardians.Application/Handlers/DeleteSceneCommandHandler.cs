@@ -32,7 +32,7 @@ internal sealed class DeleteSceneCommandHandler : ICommandHandler<DeleteSceneCom
             var scene = await _repository.GetAsync(command.SceneId, cancellationToken).ConfigureAwait(false);
             if (scene == null || scene.IsDeleted)
             {
-                return Result.Fail(new ExceptionalError("SceneNotFound", new InvalidOperationException($"Scene '{command.SceneId}' does not exist or has been deleted")));
+                return Result.Fail(new ExceptionalError("SceneNotFound", new FileNotFoundException($"Scene '{command.SceneId}' does not exist or has been deleted")));
             }
             scene.IsDeleted = true;
             await _repository.UpdateAsync(scene, cancellationToken).ConfigureAwait(false);
