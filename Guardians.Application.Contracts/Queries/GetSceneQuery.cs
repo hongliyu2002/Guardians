@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 namespace Guardians.Application.Contracts.Queries;
 
 [PublicAPI]
-public sealed class GetSceneQuery : IQuery<SceneDto>
+public sealed class GetSceneQuery : IQuery<SceneDto?>
 {
     public GetSceneQuery(SceneId sceneId)
     {

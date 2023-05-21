@@ -9,7 +9,7 @@ namespace Guardians.Application.Contracts.Queries;
 [PublicAPI]
 public sealed class ListPagedCasesQuery : IQuery<PagedResultDto<CaseDto>>
 {
-    public ListPagedCasesQuery(DateTime startDate, DateTime endDate, int pageNo, int pageSize)
+    public ListPagedCasesQuery(DateTimeOffset startDate, DateTimeOffset endDate, int pageNo, int pageSize)
     {
         StartDate = startDate;
         EndDate = endDate;
@@ -17,9 +17,9 @@ public sealed class ListPagedCasesQuery : IQuery<PagedResultDto<CaseDto>>
         PageSize = Guard.Against.NegativeOrZero(pageSize, nameof(pageSize));
     }
 
-    public DateTime StartDate { get; set; }
+    public DateTimeOffset StartDate { get; set; }
 
-    public DateTime EndDate { get; set; }
+    public DateTimeOffset EndDate { get; set; }
 
     public int PageNo { get; set; }
 

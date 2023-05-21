@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Guardians.Infrastructure.Migrations
 {
     [DbContext(typeof(GuardiansDbContext))]
-    [Migration("20230521083326_Init")]
+    [Migration("20230521112137_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -96,6 +96,8 @@ namespace Guardians.Infrastructure.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("SceneID");
+
+                    b.HasIndex("ReportedAt", "IsDeleted");
 
                     b.ToTable("Cases", (string)null);
                 });

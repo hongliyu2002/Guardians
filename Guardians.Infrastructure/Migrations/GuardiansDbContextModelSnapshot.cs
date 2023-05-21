@@ -94,6 +94,8 @@ namespace Guardians.Infrastructure.Migrations
 
                     b.HasIndex("SceneID");
 
+                    b.HasIndex("ReportedAt", "IsDeleted");
+
                     b.ToTable("Cases", (string)null);
                 });
 

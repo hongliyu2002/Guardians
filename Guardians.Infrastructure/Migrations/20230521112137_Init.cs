@@ -58,6 +58,11 @@ namespace Guardians.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Cases_ReportedAt_IsDeleted",
+                table: "Cases",
+                columns: new[] { "ReportedAt", "IsDeleted" });
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Cases_SceneID",
                 table: "Cases",
                 column: "SceneID");

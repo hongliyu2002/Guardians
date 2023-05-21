@@ -14,7 +14,7 @@ public interface ISceneApplicationService : IApplicationService
 
     Task<Result> DeleteSceneAsync(SceneId sceneID);
 
-    Task<Result<SceneDto>> GetSceneAsync(SceneId sceneID);
+    Task<SceneDto?> GetSceneAsync(SceneId sceneID);
 
-    Task<Result<ListResultDto<SceneDto>>> ListScenesAsync();
+    Task<ListResultDto<SceneDto>> ListScenesAsync();
 }

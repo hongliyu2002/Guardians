@@ -18,7 +18,7 @@ public interface ICaseApplicationService : IApplicationService
 
     Task<Result> DeleteCaseAsync(CaseId caseID);
 
-    Task<Result<CaseDto>> GetCaseAsync(CaseId caseID);
+    Task<CaseDto?> GetCaseAsync(CaseId caseID);
 
-    Task<Result<PagedResultDto<CaseDto>>> ListPagedCasesAsync(DateTime startDate, DateTime endDate, int pageNo, int pageSize);
+    Task<PagedResultDto<CaseDto>> ListPagedCasesAsync(DateTimeOffset startDate, DateTimeOffset endDate, int pageNo, int pageSize);
 }

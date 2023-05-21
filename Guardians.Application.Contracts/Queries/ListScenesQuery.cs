@@ -6,6 +6,6 @@ using JetBrains.Annotations;
 namespace Guardians.Application.Contracts.Queries;
 
 [PublicAPI]
-public sealed class ListCasesQuery : IQuery<ListResultDto<CaseDto>>
+public sealed class ListScenesQuery : IQuery<ListResultDto<SceneDto>>
 {
 }

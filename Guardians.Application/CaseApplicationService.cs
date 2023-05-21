@@ -3,6 +3,7 @@ using Fluxera.Extensions.Hosting.Modules.Application.Contracts.Dtos;
 using Fluxera.Guards;
 using Guardians.Application.Contracts;
 using Guardians.Application.Contracts.Commands;
+using Guardians.Application.Contracts.Queries;
 using Guardians.Application.Contracts.States;
 using Guardians.Domain.Shared;
 using JetBrains.Annotations;
@@ -35,24 +36,24 @@ internal sealed class CaseApplicationService : ICaseApplicationService
     /// <inheritdoc />
     public Task<Result<CaseDto>> ChangeCaseStatusAsync(CaseId caseID, CaseForStatusChangeDto input)
     {
-        return null;
+        return _sender.Send(new ChangeCaseStatusCommand(caseID, input));
     }
 
     /// <inheritdoc />
     public Task<Result> DeleteCaseAsync(CaseId caseID)
     {
-        return null;
+        return _sender.Send(new DeleteCaseCommand(caseID));
     }
 
     /// <inheritdoc />
-    public Task<Result<CaseDto>> GetCaseAsync(CaseId caseID)
+    public Task<CaseDto?> GetCaseAsync(CaseId caseID)
     {
-        return null;
+        return _sender.Send(new GetCaseQuery(caseID));
     }
 
     /// <inheritdoc />
-    public Task<Result<PagedResultDto<CaseDto>>> ListPagedCasesAsync(DateTime startDate, DateTime endDate, int pageNo, int pageSize)
+    public Task<PagedResultDto<CaseDto>> ListPagedCasesAsync(DateTimeOffset startDate, DateTimeOffset endDate, int pageNo, int pageSize)
     {
-        return null;
+        return _sender.Send(new ListPagedCasesQuery(startDate, endDate, pageNo, pageSize));
     }
 }
