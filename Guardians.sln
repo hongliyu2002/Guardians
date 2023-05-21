@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardians.Domain.Shared", "Guardians.Domain.Shared\Guardians.Domain.Shared.csproj", "{0D232137-4A15-4002-9D57-FB3A0409962F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardians.Domain", "Guardians.Domain\Guardians.Domain.csproj", "{ADE25B0D-5599-40A8-B6F2-D7DF6C783A16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardians.Application.Contracts", "Guardians.Application.Contracts\Guardians.Application.Contracts.csproj", "{66B3EDF6-2233-41CD-8E65-1E530AC98C7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardians.Application", "Guardians.Application\Guardians.Application.csproj", "{7D4E30EC-A064-46C5-86AA-30E99F095BEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardians.Infrastructure", "Guardians.Infrastructure\Guardians.Infrastructure.csproj", "{F6EC2332-7A60-4F70-9C9D-B8DD2A49EDF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardians.HttpApi", "Guardians.HttpApi\Guardians.HttpApi.csproj", "{B673C0B3-F831-4F44-A6D4-DD0E107E153F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardians.Service", "Guardians.Service\Guardians.Service.csproj", "{160F3141-26AA-4A6E-9809-C88BEDD1B1F7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D232137-4A15-4002-9D57-FB3A0409962F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D232137-4A15-4002-9D57-FB3A0409962F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D232137-4A15-4002-9D57-FB3A0409962F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D232137-4A15-4002-9D57-FB3A0409962F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADE25B0D-5599-40A8-B6F2-D7DF6C783A16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADE25B0D-5599-40A8-B6F2-D7DF6C783A16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADE25B0D-5599-40A8-B6F2-D7DF6C783A16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADE25B0D-5599-40A8-B6F2-D7DF6C783A16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66B3EDF6-2233-41CD-8E65-1E530AC98C7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66B3EDF6-2233-41CD-8E65-1E530AC98C7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66B3EDF6-2233-41CD-8E65-1E530AC98C7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66B3EDF6-2233-41CD-8E65-1E530AC98C7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D4E30EC-A064-46C5-86AA-30E99F095BEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D4E30EC-A064-46C5-86AA-30E99F095BEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D4E30EC-A064-46C5-86AA-30E99F095BEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D4E30EC-A064-46C5-86AA-30E99F095BEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6EC2332-7A60-4F70-9C9D-B8DD2A49EDF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6EC2332-7A60-4F70-9C9D-B8DD2A49EDF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6EC2332-7A60-4F70-9C9D-B8DD2A49EDF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6EC2332-7A60-4F70-9C9D-B8DD2A49EDF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B673C0B3-F831-4F44-A6D4-DD0E107E153F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B673C0B3-F831-4F44-A6D4-DD0E107E153F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B673C0B3-F831-4F44-A6D4-DD0E107E153F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B673C0B3-F831-4F44-A6D4-DD0E107E153F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{160F3141-26AA-4A6E-9809-C88BEDD1B1F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{160F3141-26AA-4A6E-9809-C88BEDD1B1F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{160F3141-26AA-4A6E-9809-C88BEDD1B1F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{160F3141-26AA-4A6E-9809-C88BEDD1B1F7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

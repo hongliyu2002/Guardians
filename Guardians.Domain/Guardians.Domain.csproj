@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.Domain" Version="7.2.5" />
+        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.Persistence" Version="7.2.5" />
+        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.Principal" Version="7.2.5" />
+        <PackageReference Include="Fluxera.Extensions.Validation.FluentValidation" Version="7.2.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Guardians.Domain.Shared\Guardians.Domain.Shared.csproj" />
+    </ItemGroup>
+
+</Project>
