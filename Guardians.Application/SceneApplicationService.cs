@@ -1,4 +1,4 @@
-﻿using FluentResults;
+﻿using System.Net;
 using Fluxera.Extensions.Hosting.Modules.Application.Contracts.Dtos;
 using Fluxera.Guards;
 using Guardians.Application.Contracts;
@@ -22,26 +22,77 @@ internal sealed class SceneApplicationService : ISceneApplicationService
     }
 
     /// <inheritdoc />
-    public Task<Result<SceneDto>> CreateSceneAsync(SceneForCreationDto input)
+    public async Task<ResultDto<SceneDto>> CreateSceneAsync(SceneForCreationDto input)
     {
-        return _sender.Send(new CreateSceneCommand(input));
+        var result = await _sender.Send(new CreateSceneCommand(input)).ConfigureAwait(false);
+        if (result.IsFailed)
+        {
+            return new ResultDto<SceneDto>
+                   {
+                       Code = (int)HttpStatusCode.InternalServerError,
+                       Message = result.Errors.First().Message,
+                       Data = null
+                   };
+        }
+        return new ResultDto<SceneDto>
+               {
+                   Code = (int)HttpStatusCode.Created,
+                   Message = HttpStatusCode.Created.ToString(),
+                   Data = result.Value
+               };
     }
 
     /// <inheritdoc />
-    public Task<Result> DeleteSceneAsync(SceneId sceneID)
+    public async Task<ResultDto<SceneId>> DeleteSceneAsync(SceneId sceneID)
     {
-        return _sender.Send(new DeleteSceneCommand(sceneID));
+        var result = await _sender.Send(new DeleteSceneCommand(sceneID)).ConfigureAwait(false);
+        if (result.IsFailed)
+        {
+            return new ResultDto<SceneId>
+                   {
+                       Code = (int)HttpStatusCode.InternalServerError,
+                       Message = result.Errors.First().Message,
+                       Data = null
+                   };
+        }
+        return new ResultDto<SceneId>
+               {
+                   Code = (int)HttpStatusCode.OK,
+                   Message = HttpStatusCode.OK.ToString(),
+                   Data = sceneID
+               };
     }
 
     /// <inheritdoc />
-    public Task<SceneDto?> GetSceneAsync(SceneId sceneID)
+    public async Task<ResultDto<SceneDto>> GetSceneAsync(SceneId sceneID)
     {
-        return _sender.Send(new GetSceneQuery(sceneID));
+        var scene = await _sender.Send(new GetSceneQuery(sceneID)).ConfigureAwait(false);
+        if (scene == null)
+        {
+            return new ResultDto<SceneDto>
+                   {
+                       Code = (int)HttpStatusCode.NotFound,
+                       Message = HttpStatusCode.NotFound.ToString(),
+                       Data = null
+                   };
+        }
+        return new ResultDto<SceneDto>
+               {
+                   Code = (int)HttpStatusCode.OK,
+                   Message = HttpStatusCode.OK.ToString(),
+                   Data = scene
+               };
     }
 
     /// <inheritdoc />
-    public Task<ListResultDto<SceneDto>> ListScenesAsync()
+    public async Task<ResultDto<ListResultDto<SceneDto>>> ListScenesAsync()
     {
-        return _sender.Send(new ListScenesQuery());
+        var scenes = await _sender.Send(new ListScenesQuery()).ConfigureAwait(false);
+        return new ResultDto<ListResultDto<SceneDto>>
+               {
+                   Code = (int)HttpStatusCode.OK,
+                   Message = HttpStatusCode.OK.ToString(),
+                   Data = scenes
+               };
     }
 }

@@ -4,6 +4,7 @@ using Fluxera.Extensions.Hosting.Modules.Application.Contracts.Dtos;
 using Fluxera.Guards;
 using Fluxera.Repository;
 using Fluxera.Repository.Query;
+using Fluxera.Utilities.Extensions;
 using Guardians.Application.Contracts.Queries;
 using Guardians.Application.Contracts.States;
 using Guardians.Domain;
@@ -31,9 +32,19 @@ internal sealed class ListPagedCasesQueryHandler : IQueryHandler<ListPagedCasesQ
     public async Task<PagedResultDto<CaseDto>> Handle(ListPagedCasesQuery query, CancellationToken cancellationToken)
     {
         var queryOptions = _queryOptionsBuilder.Include(c => c.Scene).OrderByDescending(c => c.ID).Paging(query.PageNo, query.PageSize).Build(cases => cases.AsNoTracking());
-        var casesCount = await _repository.CountAsync(c => c.ReportedAt >= query.StartDate && c.ReportedAt < query.EndDate && c.IsDeleted == false, cancellationToken).ConfigureAwait(false);
-        var cases = await _repository.FindManyAsync(c => c.ReportedAt >= query.StartDate && c.ReportedAt < query.EndDate && c.IsDeleted == false, queryOptions, cancellationToken).ConfigureAwait(false);
-        var caseDtos = _mapper.Map<IReadOnlyList<CaseDto>>(cases);
-        return new PagedResultDto<CaseDto>(casesCount, caseDtos);
+        if (query.ReporterNo.IsNullOrEmpty())
+        {
+            var casesCount = await _repository.CountAsync(c => c.ReportedAt >= query.StartDate && c.ReportedAt < query.EndDate && c.IsDeleted == false, cancellationToken).ConfigureAwait(false);
+            var cases = await _repository.FindManyAsync(c => c.ReportedAt >= query.StartDate && c.ReportedAt < query.EndDate && c.IsDeleted == false, queryOptions, cancellationToken).ConfigureAwait(false);
+            var caseDtos = _mapper.Map<IReadOnlyList<CaseDto>>(cases);
+            return new PagedResultDto<CaseDto>(casesCount, caseDtos);
+        }
+        else
+        {
+            var casesCount = await _repository.CountAsync(c => c.ReporterNo == query.ReporterNo && c.ReportedAt >= query.StartDate && c.ReportedAt < query.EndDate && c.IsDeleted == false, cancellationToken).ConfigureAwait(false);
+            var cases = await _repository.FindManyAsync(c => c.ReporterNo == query.ReporterNo && c.ReportedAt >= query.StartDate && c.ReportedAt < query.EndDate && c.IsDeleted == false, queryOptions, cancellationToken).ConfigureAwait(false);
+            var caseDtos = _mapper.Map<IReadOnlyList<CaseDto>>(cases);
+            return new PagedResultDto<CaseDto>(casesCount, caseDtos);
+        }
     }
 }

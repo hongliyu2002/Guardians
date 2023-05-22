@@ -1,5 +1,4 @@
-﻿using FluentResults;
-using Fluxera.Extensions.Hosting.Modules.Application.Contracts;
+﻿using Fluxera.Extensions.Hosting.Modules.Application.Contracts;
 using Fluxera.Extensions.Hosting.Modules.Application.Contracts.Dtos;
 using Guardians.Application.Contracts.States;
 using Guardians.Domain.Shared;
@@ -10,11 +9,11 @@ namespace Guardians.Application.Contracts;
 [PublicAPI]
 public interface ISceneApplicationService : IApplicationService
 {
-    Task<Result<SceneDto>> CreateSceneAsync(SceneForCreationDto input);
+    Task<ResultDto<SceneDto>> CreateSceneAsync(SceneForCreationDto input);
 
-    Task<Result> DeleteSceneAsync(SceneId sceneID);
+    Task<ResultDto<SceneId>> DeleteSceneAsync(SceneId sceneID);
 
-    Task<SceneDto?> GetSceneAsync(SceneId sceneID);
+    Task<ResultDto<SceneDto>> GetSceneAsync(SceneId sceneID);
 
-    Task<ListResultDto<SceneDto>> ListScenesAsync();
+    Task<ResultDto<ListResultDto<SceneDto>>> ListScenesAsync();
 }

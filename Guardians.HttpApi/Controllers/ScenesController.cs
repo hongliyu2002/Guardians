@@ -1,6 +1,4 @@
-﻿using FluentResults.Extensions.AspNetCore;
-using Fluxera.Guards;
-using Fluxera.Utilities.Extensions;
+﻿using Fluxera.Guards;
 using Guardians.Application.Contracts;
 using Guardians.Application.Contracts.States;
 using Guardians.Domain.Shared;
@@ -25,27 +23,27 @@ public sealed class ScenesController : ControllerBase
     public async Task<IActionResult> Create(SceneForCreationDto input)
     {
         var result = await _sceneAppService.CreateSceneAsync(input).ConfigureAwait(false);
-        return result.IsFailed ? result.ToActionResult() : CreatedAtAction(nameof(Get), new { sceneID = result.Value.ID }, result.Value);
+        return StatusCode(result.Code, result);
     }
 
     [HttpDelete("{sceneID:required}")]
     public async Task<IActionResult> Delete(SceneId sceneID)
     {
         var result = await _sceneAppService.DeleteSceneAsync(sceneID).ConfigureAwait(false);
-        return result.IsFailed ? result.ToActionResult() : NoContent();
+        return StatusCode(result.Code, result);
     }
 
     [HttpGet("{sceneID:required}")]
     public async Task<IActionResult> Get(SceneId sceneID)
     {
-        var sceneDto = await _sceneAppService.GetSceneAsync(sceneID).ConfigureAwait(false);
-        return sceneDto.IsNull() ? NotFound() : Ok(sceneDto);
+        var result = await _sceneAppService.GetSceneAsync(sceneID).ConfigureAwait(false);
+        return StatusCode(result.Code, result);
     }
 
     [HttpGet]
     public async Task<IActionResult> List()
     {
-        var sceneDtos = await _sceneAppService.ListScenesAsync().ConfigureAwait(false);
-        return Ok(sceneDtos);
+        var result = await _sceneAppService.ListScenesAsync().ConfigureAwait(false);
+        return StatusCode(result.Code, result);
     }
 }
