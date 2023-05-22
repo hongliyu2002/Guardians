@@ -4,19 +4,21 @@ using Fluxera.Extensions.Hosting.Modules.AspNetCore.HealthChecks;
 using Fluxera.Extensions.Hosting.Modules.OpenTelemetry;
 using Fluxera.Extensions.Hosting.Modules.Serilog;
 using Fluxera.Extensions.Hosting.Plugins;
+using Guardians.Application;
 using OpenTelemetry.Logs;
 using Serilog;
 using Serilog.Extensions.Logging;
 
-namespace Guardians.Service;
+namespace Guardians.Web;
 
-public class GuardiansServiceHost : WebApplicationHost<GuardiansServiceModule>
+public class GuardiansWebHost : WebApplicationHost<GuardiansWebModule>
 {
     /// <inheritdoc />
     protected override void ConfigureApplicationPlugins(IPluginConfigurationContext context)
     {
         context.AddPlugin<SerilogModule>();
         context.AddPlugin<HealthChecksEndpointsModule>();
+        context.AddPlugin<GuardiansApplicationModule>();
     }
 
     /// <inheritdoc />

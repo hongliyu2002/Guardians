@@ -14,6 +14,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardians.HttpApi", "Guardi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardians.Service", "Guardians.Service\Guardians.Service.csproj", "{160F3141-26AA-4A6E-9809-C88BEDD1B1F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardians.HttpClient", "Guardians.HttpClient\Guardians.HttpClient.csproj", "{7AE6634F-3817-433B-8364-939C573776F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardians.Web", "Guardians.Web\Guardians.Web.csproj", "{D375C267-4F26-4D25-8936-3B7FCEBD392D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +52,13 @@ Global
 		{160F3141-26AA-4A6E-9809-C88BEDD1B1F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{160F3141-26AA-4A6E-9809-C88BEDD1B1F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{160F3141-26AA-4A6E-9809-C88BEDD1B1F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AE6634F-3817-433B-8364-939C573776F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AE6634F-3817-433B-8364-939C573776F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AE6634F-3817-433B-8364-939C573776F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AE6634F-3817-433B-8364-939C573776F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D375C267-4F26-4D25-8936-3B7FCEBD392D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D375C267-4F26-4D25-8936-3B7FCEBD392D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D375C267-4F26-4D25-8936-3B7FCEBD392D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D375C267-4F26-4D25-8936-3B7FCEBD392D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
