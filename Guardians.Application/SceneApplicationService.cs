@@ -48,10 +48,20 @@ internal sealed class SceneApplicationService : ISceneApplicationService
         var result = await _sender.Send(new DeleteSceneCommand(sceneID)).ConfigureAwait(false);
         if (result.IsFailed)
         {
+            var firstMessage = result.Errors.First().Message;
+            if (firstMessage == "SceneNotFound")
+            {
+                return new ResultDto<SceneId>
+                       {
+                           Code = (int)HttpStatusCode.NotFound,
+                           Message = HttpStatusCode.NotFound.ToString(),
+                           Data = null
+                       };
+            }
             return new ResultDto<SceneId>
                    {
                        Code = (int)HttpStatusCode.InternalServerError,
-                       Message = result.Errors.First().Message,
+                       Message = firstMessage,
                        Data = null
                    };
         }

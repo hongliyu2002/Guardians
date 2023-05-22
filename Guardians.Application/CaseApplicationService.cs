@@ -48,10 +48,20 @@ internal sealed class CaseApplicationService : ICaseApplicationService
         var result = await _sender.Send(new UpdateCaseInfoCommand(caseID, input)).ConfigureAwait(false);
         if (result.IsFailed)
         {
+            var firstMessage = result.Errors.First().Message;
+            if (firstMessage == "CaseNotFound")
+            {
+                return new ResultDto<CaseDto>
+                       {
+                           Code = (int)HttpStatusCode.NotFound,
+                           Message = HttpStatusCode.NotFound.ToString(),
+                           Data = null
+                       };
+            }
             return new ResultDto<CaseDto>
                    {
                        Code = (int)HttpStatusCode.InternalServerError,
-                       Message = result.Errors.First().Message,
+                       Message = firstMessage,
                        Data = null
                    };
         }
@@ -69,10 +79,20 @@ internal sealed class CaseApplicationService : ICaseApplicationService
         var result = await _sender.Send(new ChangeCaseStatusCommand(caseID, input)).ConfigureAwait(false);
         if (result.IsFailed)
         {
+            var firstMessage = result.Errors.First().Message;
+            if (firstMessage == "CaseNotFound")
+            {
+                return new ResultDto<CaseDto>
+                       {
+                           Code = (int)HttpStatusCode.NotFound,
+                           Message = HttpStatusCode.NotFound.ToString(),
+                           Data = null
+                       };
+            }
             return new ResultDto<CaseDto>
                    {
                        Code = (int)HttpStatusCode.InternalServerError,
-                       Message = result.Errors.First().Message,
+                       Message = firstMessage,
                        Data = null
                    };
         }
@@ -90,17 +110,27 @@ internal sealed class CaseApplicationService : ICaseApplicationService
         var result = await _sender.Send(new DeleteCaseCommand(caseID)).ConfigureAwait(false);
         if (result.IsFailed)
         {
+            var firstMessage = result.Errors.First().Message;
+            if (firstMessage == "CaseNotFound")
+            {
+                return new ResultDto<CaseId>
+                       {
+                           Code = (int)HttpStatusCode.NotFound,
+                           Message = HttpStatusCode.NotFound.ToString(),
+                           Data = null
+                       };
+            }
             return new ResultDto<CaseId>
                    {
                        Code = (int)HttpStatusCode.InternalServerError,
-                       Message = result.Errors.First().Message,
+                       Message = firstMessage,
                        Data = null
                    };
         }
         return new ResultDto<CaseId>
                {
-                   Code = (int)HttpStatusCode.NoContent,
-                   Message = HttpStatusCode.NoContent.ToString(),
+                   Code = (int)HttpStatusCode.OK,
+                   Message = HttpStatusCode.OK.ToString(),
                    Data = caseID
                };
     }

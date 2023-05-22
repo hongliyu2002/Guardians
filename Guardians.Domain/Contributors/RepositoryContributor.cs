@@ -37,6 +37,6 @@ internal sealed class RepositoryContributor : RepositoryContributorBase
     /// <inheritdoc />
     public override void ConfigureCaching(ICachingBuilder builder, IServiceConfigurationContext context)
     {
-        builder.UseNoCaching().UseStandardFor<Scene>();
+        builder.UseNoCaching();
     }
 }
