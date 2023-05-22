@@ -3,6 +3,7 @@ using Fluxera.Extensions.Hosting.Modules;
 using Fluxera.Extensions.Hosting.Modules.Configuration;
 using Fluxera.Extensions.Hosting.Modules.Domain;
 using Fluxera.Extensions.Hosting.Modules.Persistence;
+using Fluxera.Extensions.Hosting.Modules.Principal;
 using Guardians.Domain.Contributors;
 using JetBrains.Annotations;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -11,6 +12,7 @@ namespace Guardians.Domain;
 
 [PublicAPI]
 [DependsOn<DomainModule>]
+[DependsOn<PrincipalModule>]
 [DependsOn<PersistenceModule>]
 [DependsOn<ConfigurationModule>]
 public sealed class GuardiansDomainModule : ConfigureServicesModule

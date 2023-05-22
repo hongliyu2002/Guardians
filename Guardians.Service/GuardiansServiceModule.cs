@@ -6,8 +6,10 @@ using Fluxera.Extensions.Hosting.Modules.AspNetCore.HttpApi;
 using Fluxera.Extensions.Validation;
 using Guardians.Application;
 using Guardians.HttpApi;
+using Guardians.Infrastructure.Contexts;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
 using ProblemDetailsOptions = MadEyeMatt.AspNetCore.ProblemDetails.ProblemDetailsOptions;
 
 namespace Guardians.Service;
@@ -55,5 +57,9 @@ public sealed class GuardiansServiceModule : ConfigureApplicationModule
         context.UseHttpsRedirection();
         context.UseRouting();
         context.UseEndpoints();
+        
+        using var scope = context.ServiceProvider.CreateScope();
+        var dbContext = scope.ServiceProvider.GetRequiredService<GuardiansDbContext>();
+        dbContext.Database.Migrate();
     }
 }
