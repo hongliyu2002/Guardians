@@ -54,7 +54,7 @@ public sealed class GuardiansServiceModule : ConfigureApplicationModule
             context.UseHsts();
         }
         context.UseProblemDetails();
-        context.UseHttpsRedirection();
+        // context.UseHttpsRedirection();
         context.UseRouting();
         context.UseEndpoints();
         

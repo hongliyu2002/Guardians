@@ -22,4 +22,8 @@
         <ProjectReference Include="..\Guardians.HttpApi\Guardians.HttpApi.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+        <Folder Include="Logs\" />
+    </ItemGroup>
+
 </Project>
