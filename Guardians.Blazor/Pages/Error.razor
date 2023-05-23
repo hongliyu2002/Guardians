@@ -1,0 +1,17 @@
+﻿@page "/Error"
+
+<MudLayout>
+    <MudContainer>
+        <MudText Typo="Typo.h1" Color="Color.Error">错误</MudText>
+        <MudText Typo="Typo.h2" Color="Color.Error">处理您的请求时发生了一个错误。</MudText>
+        <MudText Typo="Typo.h3">Development Mode</MudText>
+        <MudText>
+            切换到<strong>开发</strong>环境将显示有关发生的错误的详细信息。
+        </MudText>
+        <MudText>
+            <strong>不应为部署的应用程序启用开发环境。</strong>
+            这可能会导致将异常中的敏感信息显示给最终用户。
+            对于本地调试，请通过将<strong>ASPNETCORE_ENVIRONMENT</strong>环境变量设置为<strong>Development</strong>并重新启动应用程序来启用<strong>开发</strong>环境。
+        </MudText>
+    </MudContainer>
+</MudLayout>
