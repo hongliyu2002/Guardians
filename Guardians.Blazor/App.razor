@@ -1,0 +1,12 @@
+﻿<Router AppAssembly="@typeof(App).Assembly">
+    <Found Context="@routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+    <NotFound>
+        <PageTitle>找不到了</PageTitle>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <p role="alert">不好意思，这个地址上啥都没有！</p>
+        </LayoutView>
+    </NotFound>
+</Router>

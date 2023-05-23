@@ -1,5 +1,7 @@
-﻿using Fluxera.Extensions.Hosting.Modules.Application.Contracts.Dtos;
+﻿using System.Text;
+using Fluxera.Extensions.Hosting.Modules.Application.Contracts.Dtos;
 using Fluxera.Extensions.Http;
+using Fluxera.Utilities.Extensions;
 using Guardians.Application.Contracts;
 using Guardians.Application.Contracts.States;
 using Guardians.Domain.Shared;
@@ -51,14 +53,24 @@ internal sealed class CaseApplicationServiceClient : HttpClientServiceBase, ICas
     }
 
     /// <inheritdoc />
-    public Task<ResultDto<CaseDto>> GetCaseAsync(CaseId caseID)
+    public async Task<ResultDto<CaseDto>> GetCaseAsync(CaseId caseID)
     {
-        return null;
+        var response = await HttpClient.GetAsync($"/api/cases/{caseID}");
+        var result = await response.Content.ReadAsAsync<ResultDto<CaseDto>>();
+        return result;
     }
 
     /// <inheritdoc />
-    public Task<ResultDto<PagedResultDto<CaseDto>>> ListPagedCasesAsync(string? reporterNo, DateTimeOffset startDate, DateTimeOffset endDate, int pageNo = 1, int pageSize = 10)
+    public async Task<ResultDto<PagedResultDto<CaseDto>>> ListPagedCasesAsync(string? reporterNo, DateTimeOffset startDate, DateTimeOffset endDate, int pageNo = 1, int pageSize = 10)
     {
-        return null;
+        var query = new StringBuilder();
+        query.Append($"?pageNo={pageNo}&pageSize={pageSize}&startDate={startDate:yyyy-MM-dd}&endDate={endDate:yyyy-MM-dd}");
+        if (reporterNo.IsNotNullOrEmpty())
+        {
+            query.Append($"&reporterNo={reporterNo}");
+        }
+        var response = await HttpClient.GetAsync($"/api/cases/{query}");
+        var result = await response.Content.ReadAsAsync<ResultDto<PagedResultDto<CaseDto>>>();
+        return result;
     }
 }
