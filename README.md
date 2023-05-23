@@ -99,3 +99,32 @@ internal sealed class CaseApplicationServiceClient : HttpClientServiceBase, ICas
 }
 
 ```
+请为我生成以下Asp.Net Core Razor Pages页面:
+名称为Report.cshtml，此页面具有以下url查询参数：?timestamp={当前以毫秒计时间戳}&param={加密的参数}
+获取 param 后通过指定解密方法解密，解密后字段有3个: knightOid、knightName, knightMobile类型都是为string,
+解密方法如下：
+public class Encryptor
+{
+    public static string DecryptData(string encryptedStr, string publicKeyBase64, Encoding encode)
+    {
+        var publicKeyBytes = Convert.FromBase64String(publicKeyBase64);
+
+        using (var rsa = new RSACryptoServiceProvider())
+        {
+            rsa.ImportSubjectPublicKeyInfo(publicKeyBytes, out _);
+            byte[] encryptedBytes = Convert.FromBase64String(encryptedStr);
+            byte[] decryptedBytes = rsa.Decrypt(encryptedBytes, RSAEncryptionPadding.Pkcs1);
+            return encode.GetString(decryptedBytes);
+        }
+    }
+}
+解密这三个字段后，需要加载一个类型为Scene的列表，然后呈现在界面上，用户可以点击每一个条目，当选中此条目时最右侧会有一个勾，只可以单选，
+这个Scene的类型如下：
+[PublicAPI]
+public sealed class SceneDto
+{
+    public Guid ID { get; set; } = default!;
+    public string Title { get; set; } = default!;
+}
+需要将Title展现在界面中，ID为绑定的值。
+此界面最下方有一个提交按钮，点击提交需要调用一个API接口，将knight相关3个字段及选中的Scene ID一起提交，提交成功时会弹出一个Toast。
