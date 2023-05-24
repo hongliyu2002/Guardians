@@ -72,7 +72,7 @@ public partial class ReportView : ReactiveInjectableComponentBase<ReportViewMode
         const string publicKeyBase64 = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCfS3rnByQ8QV3ayiwFZHP6aNxEDS92tU1W1VPQLSh7CsIlyx1GiuUjZeXbdMI7ylLBDWY7QM2hFNZDOQzHS8zzUx3f8Ayiy83BiJ+uM1JotprROP6QmP9VafapxdHjbuDQOZHclcbRxfwWME5dilKQSg2ygNoyHHg8F3Rt15OzOQIDAQAB";
         var decryptedContent = Encryptor.DecryptData(encryptedParam[0]!, publicKeyBase64, Encoding.UTF8);
         var knightInfo = JsonConvert.DeserializeObject<KnightInfo>(decryptedContent);
-        if (ViewModel != null)
+        if (ViewModel != null && knightInfo != null)
         {
             ViewModel.ReporterNo = knightInfo.KnightOid;
             ViewModel.ReporterName = knightInfo.KnightName;
