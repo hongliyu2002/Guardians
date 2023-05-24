@@ -3,7 +3,7 @@
 <PageTitle>事件上报</PageTitle>
 <MudStack>
     <MudAppBar Elevation="1" Dense="true">
-        <MudText Align="Align.Center" Typo="Typo.h6">请选择确认场景</MudText>
+        <MudText Typo="Typo.h6">请选择确认场景</MudText>
     </MudAppBar>
     @if (ViewModel == null)
     {
@@ -12,15 +12,20 @@
     else
     {
         <MudList Clickable="true" @bind-SelectedValue="@ViewModel.CurrentScene" Color="@Color.Primary">
+            <MudListSubheader>
+                <MudChip Color="Color.Secondary">
+                    <MudText Typo="Typo.subtitle2">@ViewModel.ReporterName @ViewModel.ReporterMobile</MudText>
+                </MudChip>
+            </MudListSubheader>
             @foreach (var scene in ViewModel.Scenes)
             {
-                <MudListItem Value="scene" Disabled="@scene.IsDeleted">
+                <MudListItem Value="scene">
                     <SceneItemView ViewModel="scene" />
                 </MudListItem>
             }
         </MudList>
+        <MudButton StartIcon="@Icons.Material.Filled.Save" Command="@ViewModel.SubmitCaseCommand" Disabled="@ViewModel.CannotSubmitCase" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large">
+            <MudText Typo="Typo.subtitle1">提交</MudText>
+        </MudButton>
     }
-    <MudButton StartIcon="@Icons.Material.Filled.Save" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large">
-        <MudText Typo="Typo.subtitle1">提交</MudText>
-    </MudButton>
 </MudStack>

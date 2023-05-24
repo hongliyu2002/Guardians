@@ -1,12 +1,12 @@
 ﻿using Fluxera.Guards;
-using Guardians.Domain;
+using Guardians.Application.Contracts.States;
 using ReactiveUI;
 
 namespace Guardians.Blazor.ViewModels;
 
 public class SceneItemViewModel : ReactiveObject
 {
-    public SceneItemViewModel(Scene scene)
+    public SceneItemViewModel(SceneDto scene)
     {
         Guard.Against.Null(scene, nameof(scene));
         UpdateWith(scene);
@@ -28,23 +28,16 @@ public class SceneItemViewModel : ReactiveObject
         set => this.RaiseAndSetIfChanged(ref _title, value);
     }
 
-    private bool _isDeleted;
-    public bool IsDeleted
-    {
-        get => _isDeleted;
-        set => this.RaiseAndSetIfChanged(ref _isDeleted, value);
-    }
-
     #endregion
 
     #region Load Scene
 
-    public void UpdateWith(Scene scene)
+    public void UpdateWith(SceneDto scene)
     {
         Id = scene.ID.Value;
         Title = scene.Title;
-        IsDeleted = scene.IsDeleted;
     }
 
     #endregion
+
 }

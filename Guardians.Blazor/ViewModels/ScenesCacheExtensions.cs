@@ -1,11 +1,11 @@
 ﻿using DynamicData;
-using Guardians.Domain;
+using Guardians.Application.Contracts.States;
 
 namespace Guardians.Blazor.ViewModels;
 
 public static class ScenesCacheExtensions
 {
-    public static void AddOrUpdateWith(this SourceCache<SceneItemViewModel, Guid> sourceCache, Scene scene)
+    public static void AddOrUpdateWith(this SourceCache<SceneItemViewModel, Guid> sourceCache, SceneDto scene)
     {
         sourceCache.Edit(updater =>
                          {
@@ -21,7 +21,7 @@ public static class ScenesCacheExtensions
                          });
     }
 
-    public static void AddOrUpdateWith(this SourceCache<SceneItemViewModel, Guid> sourceCache, IReadOnlyCollection<Scene> scenes)
+    public static void AddOrUpdateWith(this SourceCache<SceneItemViewModel, Guid> sourceCache, IReadOnlyList<SceneDto> scenes)
     {
         sourceCache.Edit(updater =>
                          {
