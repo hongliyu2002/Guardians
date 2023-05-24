@@ -34,7 +34,7 @@ internal sealed class UpdateCaseInfoCommandHandler : ICommandHandler<UpdateCaseI
     {
         try
         {
-            var @case = await _repository.GetAsync(command.CaseId, cancellationToken).ConfigureAwait(false);
+            var @case = await _repository.GetAsync(command.CaseId, cancellationToken);
             if (@case == null || @case.IsDeleted)
             {
                 return Result.Fail<CaseDto>(new ExceptionalError("CaseNotFound", new FileNotFoundException($"Case '{command.CaseId}' does not exist or has been deleted")));
@@ -42,8 +42,8 @@ internal sealed class UpdateCaseInfoCommandHandler : ICommandHandler<UpdateCaseI
             @case.Description = command.Input.Description;
             @case.Address = command.Input.Address;
             @case.PhotoUrl = command.Input.PhotoUrl;
-            await _repository.UpdateAsync(@case, cancellationToken).ConfigureAwait(false);
-            await _unitOfWork.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+            await _repository.UpdateAsync(@case, cancellationToken);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
             var caseDto = _mapper.Map<CaseDto>(@case);
             return Result.Ok(caseDto);
         }

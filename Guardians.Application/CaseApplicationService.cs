@@ -23,15 +23,13 @@ internal sealed class CaseApplicationService : ICaseApplicationService
     /// <inheritdoc />
     public async Task<ResultDto<CaseDto>> CreateCaseAsync(CaseForCreationDto input)
     {
-        var result = await _sender.Send(new CreateCaseCommand(input))
-                                  .ConfigureAwait(false);
+        var result = await _sender.Send(new CreateCaseCommand(input));
         if (result.IsFailed)
         {
             return new ResultDto<CaseDto>
                    {
                        Code = (int)HttpStatusCode.InternalServerError,
-                       Msg = result.Errors.First()
-                                   .Message,
+                       Msg = result.Errors.First().Message,
                        Data = null
                    };
         }
@@ -46,12 +44,10 @@ internal sealed class CaseApplicationService : ICaseApplicationService
     /// <inheritdoc />
     public async Task<ResultDto<CaseDto>> UpdateCaseInfoAsync(CaseId caseID, CaseForUpdateDto input)
     {
-        var result = await _sender.Send(new UpdateCaseInfoCommand(caseID, input))
-                                  .ConfigureAwait(false);
+        var result = await _sender.Send(new UpdateCaseInfoCommand(caseID, input));
         if (result.IsFailed)
         {
-            var firstMessage = result.Errors.First()
-                                     .Message;
+            var firstMessage = result.Errors.First().Message;
             if (firstMessage == "CaseNotFound")
             {
                 return new ResultDto<CaseDto>
@@ -79,12 +75,10 @@ internal sealed class CaseApplicationService : ICaseApplicationService
     /// <inheritdoc />
     public async Task<ResultDto<CaseDto>> ChangeCaseStatusAsync(CaseId caseID, CaseForStatusChangeDto input)
     {
-        var result = await _sender.Send(new ChangeCaseStatusCommand(caseID, input))
-                                  .ConfigureAwait(false);
+        var result = await _sender.Send(new ChangeCaseStatusCommand(caseID, input));
         if (result.IsFailed)
         {
-            var firstMessage = result.Errors.First()
-                                     .Message;
+            var firstMessage = result.Errors.First().Message;
             if (firstMessage == "CaseNotFound")
             {
                 return new ResultDto<CaseDto>
@@ -112,12 +106,10 @@ internal sealed class CaseApplicationService : ICaseApplicationService
     /// <inheritdoc />
     public async Task<ResultDto<CaseId>> DeleteCaseAsync(CaseId caseID)
     {
-        var result = await _sender.Send(new DeleteCaseCommand(caseID))
-                                  .ConfigureAwait(false);
+        var result = await _sender.Send(new DeleteCaseCommand(caseID));
         if (result.IsFailed)
         {
-            var firstMessage = result.Errors.First()
-                                     .Message;
+            var firstMessage = result.Errors.First().Message;
             if (firstMessage == "CaseNotFound")
             {
                 return new ResultDto<CaseId>
@@ -145,8 +137,7 @@ internal sealed class CaseApplicationService : ICaseApplicationService
     /// <inheritdoc />
     public async Task<ResultDto<CaseDto>> GetCaseAsync(CaseId caseID)
     {
-        var @case = await _sender.Send(new GetCaseQuery(caseID))
-                                 .ConfigureAwait(false);
+        var @case = await _sender.Send(new GetCaseQuery(caseID));
         if (@case == null)
         {
             return new ResultDto<CaseDto>
@@ -167,8 +158,7 @@ internal sealed class CaseApplicationService : ICaseApplicationService
     /// <inheritdoc />
     public async Task<ResultDto<PagedListResultDto<CaseDto>>> ListPagedCasesAsync(string? reporterNo, DateTimeOffset startDate, DateTimeOffset endDate, int pageNo = 1, int pageSize = 10)
     {
-        var cases = await _sender.Send(new ListPagedCasesQuery(reporterNo, startDate, endDate, pageNo, pageSize))
-                                 .ConfigureAwait(false);
+        var cases = await _sender.Send(new ListPagedCasesQuery(reporterNo, startDate, endDate, pageNo, pageSize));
         return new ResultDto<PagedListResultDto<CaseDto>>
                {
                    Code = (int)HttpStatusCode.OK,

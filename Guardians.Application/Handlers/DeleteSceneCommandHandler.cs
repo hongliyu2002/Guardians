@@ -29,14 +29,14 @@ internal sealed class DeleteSceneCommandHandler : ICommandHandler<DeleteSceneCom
     {
         try
         {
-            var scene = await _repository.GetAsync(command.SceneId, cancellationToken).ConfigureAwait(false);
+            var scene = await _repository.GetAsync(command.SceneId, cancellationToken);
             if (scene == null || scene.IsDeleted)
             {
                 return Result.Fail(new ExceptionalError("SceneNotFound", new FileNotFoundException($"Scene '{command.SceneId}' does not exist or has been deleted")));
             }
             scene.IsDeleted = true;
-            await _repository.UpdateAsync(scene, cancellationToken).ConfigureAwait(false);
-            await _unitOfWork.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+            await _repository.UpdateAsync(scene, cancellationToken);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
             return Result.Ok();
         }
         catch (Exception ex)

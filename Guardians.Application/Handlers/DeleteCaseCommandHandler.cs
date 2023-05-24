@@ -29,14 +29,14 @@ internal sealed class DeleteCaseCommandHandler : ICommandHandler<DeleteCaseComma
     {
         try
         {
-            var @case = await _repository.GetAsync(command.CaseId, cancellationToken).ConfigureAwait(false);
+            var @case = await _repository.GetAsync(command.CaseId, cancellationToken);
             if (@case == null || @case.IsDeleted)
             {
                 return Result.Fail(new ExceptionalError("CaseNotFound", new FileNotFoundException($"Case '{command.CaseId}' does not exist or has been deleted")));
             }
             @case.IsDeleted = true;
-            await _repository.UpdateAsync(@case, cancellationToken).ConfigureAwait(false);
-            await _unitOfWork.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+            await _repository.UpdateAsync(@case, cancellationToken);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
             return Result.Ok();
         }
         catch (Exception ex)

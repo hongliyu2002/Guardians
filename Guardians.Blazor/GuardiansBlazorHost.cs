@@ -4,7 +4,6 @@ using Fluxera.Extensions.Hosting.Modules.AspNetCore.HealthChecks;
 using Fluxera.Extensions.Hosting.Modules.OpenTelemetry;
 using Fluxera.Extensions.Hosting.Modules.Serilog;
 using Fluxera.Extensions.Hosting.Plugins;
-using Guardians.Application;
 using OpenTelemetry.Logs;
 using Serilog;
 using Serilog.Extensions.Logging;
@@ -18,7 +17,6 @@ public class GuardiansBlazorHost : WebApplicationHost<GuardiansBlazorModule>
     {
         context.AddPlugin<SerilogModule>();
         context.AddPlugin<HealthChecksEndpointsModule>();
-        context.AddPlugin<GuardiansApplicationModule>();
     }
 
     /// <inheritdoc />

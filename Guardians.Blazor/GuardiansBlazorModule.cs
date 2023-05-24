@@ -2,6 +2,7 @@
 using Fluxera.Extensions.Hosting.Modules;
 using Fluxera.Extensions.Hosting.Modules.AspNetCore;
 using Fluxera.Extensions.Hosting.Modules.AspNetCore.HealthChecks;
+using Guardians.Application;
 using Guardians.AspNetCore.Components.Server;
 using Guardians.Blazor.ViewModels;
 using Guardians.Infrastructure.Contexts;
@@ -14,6 +15,7 @@ namespace Guardians.Blazor;
 [PublicAPI]
 [DependsOn<ComponentsServerModule>]
 [DependsOn<HealthChecksEndpointsModule>]
+[DependsOn<GuardiansApplicationModule>]
 public sealed class GuardiansBlazorModule : ConfigureApplicationModule
 {
     /// <inheritdoc />
@@ -39,8 +41,5 @@ public sealed class GuardiansBlazorModule : ConfigureApplicationModule
         context.UseStaticFiles();
         context.UseRouting();
         context.UseEndpoints();
-        using var scope = context.ServiceProvider.CreateScope();
-        var dbContext = scope.ServiceProvider.GetRequiredService<GuardiansDbContext>();
-        dbContext.Database.Migrate();
     }
 }

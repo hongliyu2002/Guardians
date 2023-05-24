@@ -34,14 +34,14 @@ internal sealed class ChangeCaseStatusCommandHandler : ICommandHandler<ChangeCas
     {
         try
         {
-            var @case = await _repository.GetAsync(command.CaseId, cancellationToken).ConfigureAwait(false);
+            var @case = await _repository.GetAsync(command.CaseId, cancellationToken);
             if (@case == null || @case.IsDeleted)
             {
                 return Result.Fail<CaseDto>(new ExceptionalError("CaseNotFound", new FileNotFoundException($"Case '{command.CaseId}' does not exist or has been deleted")));
             }
             @case.Status = command.Input.Status;
-            await _repository.UpdateAsync(@case, cancellationToken).ConfigureAwait(false);
-            await _unitOfWork.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+            await _repository.UpdateAsync(@case, cancellationToken);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
             var caseDto = _mapper.Map<CaseDto>(@case);
             return Result.Ok(caseDto);
         }

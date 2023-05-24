@@ -60,8 +60,8 @@ public partial class ReportView : ReactiveInjectableComponentBase<ReportViewMode
     {
         var uri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);
         var query = QueryHelpers.ParseQuery(uri.Query);
-        var encryptedParam = query["param"];
-        if (encryptedParam.IsNullOrEmpty())
+        var paramExists = query.TryGetValue("param", out var encryptedParam);
+        if (!paramExists || encryptedParam.IsNullOrEmpty())
         {
             return;
         }

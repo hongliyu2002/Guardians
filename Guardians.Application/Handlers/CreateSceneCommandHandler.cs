@@ -35,8 +35,8 @@ internal sealed class CreateSceneCommandHandler : ICommandHandler<CreateSceneCom
         try
         {
             var scene = new Scene { Title = command.Input.Title };
-            await _repository.AddAsync(scene, cancellationToken).ConfigureAwait(false);
-            await _unitOfWork.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+            await _repository.AddAsync(scene, cancellationToken);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
             var sceneDto = _mapper.Map<SceneDto>(scene);
             return Result.Ok(sceneDto);
         }

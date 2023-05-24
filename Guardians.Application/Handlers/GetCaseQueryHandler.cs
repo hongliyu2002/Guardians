@@ -30,7 +30,7 @@ internal sealed class GetCaseQueryHandler : IQueryHandler<GetCaseQuery, CaseDto?
     public async Task<CaseDto?> Handle(GetCaseQuery query, CancellationToken cancellationToken)
     {
         var queryOptions = _queryOptionsBuilder.Include(c => c.Scene).Build(cases => cases.AsNoTracking());
-        var @case = await _repository.FindOneAsync(c => c.ID == query.CaseId && c.IsDeleted == false, queryOptions, cancellationToken).ConfigureAwait(false);
+        var @case = await _repository.FindOneAsync(c => c.ID == query.CaseId && c.IsDeleted == false, queryOptions, cancellationToken);
         return @case == null ? null : _mapper.Map<CaseDto>(@case);
     }
 }

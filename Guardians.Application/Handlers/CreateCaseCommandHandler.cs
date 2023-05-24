@@ -43,8 +43,8 @@ internal sealed class CreateCaseCommandHandler : ICommandHandler<CreateCaseComma
                             ReporterMobile = command.Input.ReporterMobile,
                             Status = CaseStatus.Reviewing
                         };
-            await _repository.AddAsync(@case, cancellationToken).ConfigureAwait(false);
-            await _unitOfWork.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+            await _repository.AddAsync(@case, cancellationToken);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
             var caseDto = _mapper.Map<CaseDto>(@case);
             return Result.Ok(caseDto);
         }
