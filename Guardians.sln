@@ -16,8 +16,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardians.Service", "Guardi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardians.HttpClient", "Guardians.HttpClient\Guardians.HttpClient.csproj", "{7AE6634F-3817-433B-8364-939C573776F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardians.Web", "Guardians.Web\Guardians.Web.csproj", "{D375C267-4F26-4D25-8936-3B7FCEBD392D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardians.Blazor", "Guardians.Blazor\Guardians.Blazor.csproj", "{01B31046-B7FE-4BA3-82F0-AD29F0061793}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardians.AspNetCore.Components.Server", "Guardians.AspNetCore.Components.Server\Guardians.AspNetCore.Components.Server.csproj", "{F52D3C65-87ED-4A5B-8BD0-8C2B33D2574C}"
@@ -60,10 +58,6 @@ Global
 		{7AE6634F-3817-433B-8364-939C573776F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AE6634F-3817-433B-8364-939C573776F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AE6634F-3817-433B-8364-939C573776F1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D375C267-4F26-4D25-8936-3B7FCEBD392D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D375C267-4F26-4D25-8936-3B7FCEBD392D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D375C267-4F26-4D25-8936-3B7FCEBD392D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D375C267-4F26-4D25-8936-3B7FCEBD392D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{01B31046-B7FE-4BA3-82F0-AD29F0061793}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{01B31046-B7FE-4BA3-82F0-AD29F0061793}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01B31046-B7FE-4BA3-82F0-AD29F0061793}.Release|Any CPU.ActiveCfg = Release|Any CPU

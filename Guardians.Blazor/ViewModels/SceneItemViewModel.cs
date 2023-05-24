@@ -6,15 +6,11 @@ namespace Guardians.Blazor.ViewModels;
 
 public class SceneItemViewModel : ReactiveObject
 {
-    #region Constructor
-
     public SceneItemViewModel(Scene scene)
     {
         Guard.Against.Null(scene, nameof(scene));
         UpdateWith(scene);
     }
-
-    #endregion
 
     #region Properties
 

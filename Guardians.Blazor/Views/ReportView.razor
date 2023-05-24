@@ -1,0 +1,18 @@
+﻿@page "/"
+@inherits ReactiveInjectableComponentBase<ReportViewModel>
+
+<PageTitle>事件上报</PageTitle>
+<MudStack>
+    <MudAppBar Elevation="1" Dense="true">
+        <MudText Align="Align.Center" Typo="Typo.h6">请选择确认场景</MudText>
+    </MudAppBar>
+    <MudList Clickable="true" @bind-SelectedValue="@ViewModel.CurrentScene" Color="@Color.Secondary">
+          @foreach (var scene in ViewModel.Scenes)
+          {
+              <MudListItem Value="scene" Disabled="@scene.IsDeleted">
+                  <SceneItemView ViewModel="scene" />
+              </MudListItem>
+          }
+    </MudList>
+    <MudButton StartIcon="@Icons.Material.Filled.Report" Variant="Variant.Filled" Color="Color.Primary">提交</MudButton>
+</MudStack>

@@ -3,6 +3,7 @@ using Fluxera.Extensions.Hosting.Modules;
 using Fluxera.Extensions.Hosting.Modules.AspNetCore;
 using Fluxera.Extensions.Hosting.Modules.AspNetCore.HealthChecks;
 using Guardians.AspNetCore.Components.Server;
+using Guardians.Blazor.ViewModels;
 using Guardians.Infrastructure.Contexts;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ public sealed class GuardiansBlazorModule : ConfigureApplicationModule
     public override void ConfigureServices(IServiceConfigurationContext context)
     {
         context.Log("AddMudServices", services => services.AddMudServices());
+        context.Log("AddReportViewModel", services => services.AddScoped<ReportViewModel>());
     }
     
     /// <inheritdoc />
