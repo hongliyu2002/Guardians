@@ -24,20 +24,22 @@ internal sealed class SceneApplicationService : ISceneApplicationService
     /// <inheritdoc />
     public async Task<ResultDto<SceneDto>> CreateSceneAsync(SceneForCreationDto input)
     {
-        var result = await _sender.Send(new CreateSceneCommand(input)).ConfigureAwait(false);
+        var result = await _sender.Send(new CreateSceneCommand(input))
+                                  .ConfigureAwait(false);
         if (result.IsFailed)
         {
             return new ResultDto<SceneDto>
                    {
                        Code = (int)HttpStatusCode.InternalServerError,
-                       Msg = result.Errors.First().Message,
+                       Msg = result.Errors.First()
+                                   .Message,
                        Data = null
                    };
         }
         return new ResultDto<SceneDto>
                {
-                   Code = (int)HttpStatusCode.Created,
-                   Msg = HttpStatusCode.Created.ToString(),
+                   Code = (int)HttpStatusCode.OK,
+                   Msg = HttpStatusCode.OK.ToString(),
                    Data = result.Value
                };
     }
@@ -45,10 +47,12 @@ internal sealed class SceneApplicationService : ISceneApplicationService
     /// <inheritdoc />
     public async Task<ResultDto<SceneId>> DeleteSceneAsync(SceneId sceneID)
     {
-        var result = await _sender.Send(new DeleteSceneCommand(sceneID)).ConfigureAwait(false);
+        var result = await _sender.Send(new DeleteSceneCommand(sceneID))
+                                  .ConfigureAwait(false);
         if (result.IsFailed)
         {
-            var firstMessage = result.Errors.First().Message;
+            var firstMessage = result.Errors.First()
+                                     .Message;
             if (firstMessage == "SceneNotFound")
             {
                 return new ResultDto<SceneId>
@@ -76,7 +80,8 @@ internal sealed class SceneApplicationService : ISceneApplicationService
     /// <inheritdoc />
     public async Task<ResultDto<SceneDto>> GetSceneAsync(SceneId sceneID)
     {
-        var scene = await _sender.Send(new GetSceneQuery(sceneID)).ConfigureAwait(false);
+        var scene = await _sender.Send(new GetSceneQuery(sceneID))
+                                 .ConfigureAwait(false);
         if (scene == null)
         {
             return new ResultDto<SceneDto>
@@ -97,7 +102,8 @@ internal sealed class SceneApplicationService : ISceneApplicationService
     /// <inheritdoc />
     public async Task<ResultDto<ListResultDto<SceneDto>>> ListScenesAsync()
     {
-        var scenes = await _sender.Send(new ListScenesQuery()).ConfigureAwait(false);
+        var scenes = await _sender.Send(new ListScenesQuery())
+                                  .ConfigureAwait(false);
         return new ResultDto<ListResultDto<SceneDto>>
                {
                    Code = (int)HttpStatusCode.OK,
