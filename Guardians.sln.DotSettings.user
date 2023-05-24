@@ -11,4 +11,5 @@
   &lt;Assembly Path="C:\Users\hongl\.nuget\packages\madeyematt.aspnetcore.problemdetails\7.2.0\lib\net7.0\MadEyeMatt.AspNetCore.ProblemDetails.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Users\hongl\.nuget\packages\fluentresults.extensions.aspnetcore\0.1.0\lib\netstandard2.1\FluentResults.Extensions.AspNetCore.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Program Files\dotnet\packs\Microsoft.AspNetCore.App.Ref\7.0.1\ref\net7.0\Microsoft.AspNetCore.Mvc.Core.dll" /&gt;&#xD;
+  &lt;PhysicalFolder Path="C:\Users\liyuhong\.nuget\packages\system.reactive\6.0.0" Loaded="True" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>

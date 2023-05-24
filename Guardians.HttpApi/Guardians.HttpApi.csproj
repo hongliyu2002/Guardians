@@ -7,13 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentResults.Extensions.AspNetCore" Version="0.1.0" />
-        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.AspNetCore.HttpApi" Version="7.2.5" />
-        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.AspNetCore.HttpApi.OData" Version="7.2.5" />
+        <PackageReference Include="FluentResults.Extensions.AspNetCore" Version="0.1.0"/>
+        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.AspNetCore.HttpApi" Version="7.2.5"/>
+        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.AspNetCore.HttpApi.OData" Version="7.2.5"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Guardians.Application.Contracts\Guardians.Application.Contracts.csproj" />
+        <ProjectReference Include="..\Guardians.Application.Contracts\Guardians.Application.Contracts.csproj"/>
     </ItemGroup>
 
 </Project>

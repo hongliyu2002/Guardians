@@ -1,0 +1,13 @@
+﻿@inherits ReactiveComponentBase<SceneItemViewModel>
+@if (ViewModel == null)
+{
+    <MudText Typo="Typo.subtitle2">Loading...</MudText>
+}
+else
+{
+    <MudText Typo="Typo.subtitle2">@ViewModel.Title</MudText>
+}
+
+@code
+{
+}

@@ -30,7 +30,7 @@ public sealed class GuardiansBlazorModule : ConfigureApplicationModule
         }
         else
         {
-            context.UseExceptionHandler("/Error");
+            context.UseExceptionHandler("/error");
             context.UseHsts();
         }
         // context.UseHttpsRedirection();
