@@ -61,7 +61,7 @@ internal sealed class CaseApplicationServiceClient : HttpClientServiceBase, ICas
     }
 
     /// <inheritdoc />
-    public async Task<ResultDto<PagedResultDto<CaseDto>>> ListPagedCasesAsync(string? reporterNo, DateTimeOffset startDate, DateTimeOffset endDate, int pageNo = 1, int pageSize = 10)
+    public async Task<ResultDto<PagedListResultDto<CaseDto>>> ListPagedCasesAsync(string? reporterNo, DateTimeOffset startDate, DateTimeOffset endDate, int pageNo = 1, int pageSize = 10)
     {
         var query = new StringBuilder();
         query.Append($"?pageNo={pageNo}&pageSize={pageSize}&startDate={startDate:yyyy-MM-dd}&endDate={endDate:yyyy-MM-dd}");
@@ -70,7 +70,7 @@ internal sealed class CaseApplicationServiceClient : HttpClientServiceBase, ICas
             query.Append($"&reporterNo={reporterNo}");
         }
         var response = await HttpClient.GetAsync($"/api/cases/{query}");
-        var result = await response.Content.ReadAsAsync<ResultDto<PagedResultDto<CaseDto>>>();
+        var result = await response.Content.ReadAsAsync<ResultDto<PagedListResultDto<CaseDto>>>();
         return result;
     }
 }

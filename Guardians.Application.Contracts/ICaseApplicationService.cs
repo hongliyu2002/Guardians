@@ -19,5 +19,5 @@ public interface ICaseApplicationService : IApplicationService
 
     Task<ResultDto<CaseDto>> GetCaseAsync(CaseId caseID);
 
-    Task<ResultDto<PagedResultDto<CaseDto>>> ListPagedCasesAsync(string? reporterNo, DateTimeOffset startDate, DateTimeOffset endDate, int pageNo = 1, int pageSize = 10);
+    Task<ResultDto<PagedListResultDto<CaseDto>>> ListPagedCasesAsync(string? reporterNo, DateTimeOffset startDate, DateTimeOffset endDate, int pageNo = 1, int pageSize = 10);
 }

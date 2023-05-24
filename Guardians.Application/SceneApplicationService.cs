@@ -30,14 +30,14 @@ internal sealed class SceneApplicationService : ISceneApplicationService
             return new ResultDto<SceneDto>
                    {
                        Code = (int)HttpStatusCode.InternalServerError,
-                       Message = result.Errors.First().Message,
+                       Msg = result.Errors.First().Message,
                        Data = null
                    };
         }
         return new ResultDto<SceneDto>
                {
                    Code = (int)HttpStatusCode.Created,
-                   Message = HttpStatusCode.Created.ToString(),
+                   Msg = HttpStatusCode.Created.ToString(),
                    Data = result.Value
                };
     }
@@ -54,21 +54,21 @@ internal sealed class SceneApplicationService : ISceneApplicationService
                 return new ResultDto<SceneId>
                        {
                            Code = (int)HttpStatusCode.NotFound,
-                           Message = HttpStatusCode.NotFound.ToString(),
+                           Msg = HttpStatusCode.NotFound.ToString(),
                            Data = null
                        };
             }
             return new ResultDto<SceneId>
                    {
                        Code = (int)HttpStatusCode.InternalServerError,
-                       Message = firstMessage,
+                       Msg = firstMessage,
                        Data = null
                    };
         }
         return new ResultDto<SceneId>
                {
                    Code = (int)HttpStatusCode.OK,
-                   Message = HttpStatusCode.OK.ToString(),
+                   Msg = HttpStatusCode.OK.ToString(),
                    Data = sceneID
                };
     }
@@ -82,14 +82,14 @@ internal sealed class SceneApplicationService : ISceneApplicationService
             return new ResultDto<SceneDto>
                    {
                        Code = (int)HttpStatusCode.NotFound,
-                       Message = HttpStatusCode.NotFound.ToString(),
+                       Msg = HttpStatusCode.NotFound.ToString(),
                        Data = null
                    };
         }
         return new ResultDto<SceneDto>
                {
                    Code = (int)HttpStatusCode.OK,
-                   Message = HttpStatusCode.OK.ToString(),
+                   Msg = HttpStatusCode.OK.ToString(),
                    Data = scene
                };
     }
@@ -101,7 +101,7 @@ internal sealed class SceneApplicationService : ISceneApplicationService
         return new ResultDto<ListResultDto<SceneDto>>
                {
                    Code = (int)HttpStatusCode.OK,
-                   Message = HttpStatusCode.OK.ToString(),
+                   Msg = HttpStatusCode.OK.ToString(),
                    Data = scenes
                };
     }

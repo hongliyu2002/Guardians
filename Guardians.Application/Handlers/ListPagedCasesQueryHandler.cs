@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Fluxera.Extensions.Hosting.Modules.Application;
-using Fluxera.Extensions.Hosting.Modules.Application.Contracts.Dtos;
 using Fluxera.Guards;
 using Fluxera.Repository;
 using Fluxera.Repository.Query;
@@ -15,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Guardians.Application.Handlers;
 
 [UsedImplicitly]
-internal sealed class ListPagedCasesQueryHandler : IQueryHandler<ListPagedCasesQuery, PagedResultDto<CaseDto>>
+internal sealed class ListPagedCasesQueryHandler : IQueryHandler<ListPagedCasesQuery, PagedListResultDto<CaseDto>>
 {
     private readonly IRepository<Case, CaseId> _repository;
     private readonly QueryOptionsBuilder<Case> _queryOptionsBuilder;
@@ -29,22 +28,31 @@ internal sealed class ListPagedCasesQueryHandler : IQueryHandler<ListPagedCasesQ
     }
 
     /// <inheritdoc />
-    public async Task<PagedResultDto<CaseDto>> Handle(ListPagedCasesQuery query, CancellationToken cancellationToken)
+    public async Task<PagedListResultDto<CaseDto>> Handle(ListPagedCasesQuery query, CancellationToken cancellationToken)
     {
-        var queryOptions = _queryOptionsBuilder.Include(c => c.Scene).OrderByDescending(c => c.ID).Paging(query.PageNo, query.PageSize).Build(cases => cases.AsNoTracking());
+        var queryOptions = _queryOptionsBuilder.Include(c => c.Scene)
+                                               .OrderByDescending(c => c.ID)
+                                               .Paging(query.PageNo, query.PageSize)
+                                               .Build(cases => cases.AsNoTracking());
         if (query.ReporterNo.IsNullOrEmpty())
         {
-            var casesCount = await _repository.CountAsync(c => c.ReportedAt >= query.StartDate && c.ReportedAt < query.EndDate && c.IsDeleted == false, cancellationToken).ConfigureAwait(false);
-            var cases = await _repository.FindManyAsync(c => c.ReportedAt >= query.StartDate && c.ReportedAt < query.EndDate && c.IsDeleted == false, queryOptions, cancellationToken).ConfigureAwait(false);
+            var casesCount = await _repository.CountAsync(c => c.ReportedAt >= query.StartDate && c.ReportedAt < query.EndDate && c.IsDeleted == false, cancellationToken)
+                                              .ConfigureAwait(false);
+            var casesPageCount = (long)Math.Ceiling(casesCount / (double)query.PageSize);
+            var cases = await _repository.FindManyAsync(c => c.ReportedAt >= query.StartDate && c.ReportedAt < query.EndDate && c.IsDeleted == false, queryOptions, cancellationToken)
+                                         .ConfigureAwait(false);
             var caseDtos = _mapper.Map<IReadOnlyList<CaseDto>>(cases);
-            return new PagedResultDto<CaseDto>(casesCount, caseDtos);
+            return new PagedListResultDto<CaseDto>(query.PageNo, query.PageSize, casesPageCount, casesCount, caseDtos);
         }
         else
         {
-            var casesCount = await _repository.CountAsync(c => c.ReporterNo == query.ReporterNo && c.ReportedAt >= query.StartDate && c.ReportedAt < query.EndDate && c.IsDeleted == false, cancellationToken).ConfigureAwait(false);
-            var cases = await _repository.FindManyAsync(c => c.ReporterNo == query.ReporterNo && c.ReportedAt >= query.StartDate && c.ReportedAt < query.EndDate && c.IsDeleted == false, queryOptions, cancellationToken).ConfigureAwait(false);
+            var casesCount = await _repository.CountAsync(c => c.ReporterNo == query.ReporterNo && c.ReportedAt >= query.StartDate && c.ReportedAt < query.EndDate && c.IsDeleted == false, cancellationToken)
+                                              .ConfigureAwait(false);
+            var casesPageCount = (long)Math.Ceiling(casesCount / (double)query.PageSize);
+            var cases = await _repository.FindManyAsync(c => c.ReporterNo == query.ReporterNo && c.ReportedAt >= query.StartDate && c.ReportedAt < query.EndDate && c.IsDeleted == false, queryOptions, cancellationToken)
+                                         .ConfigureAwait(false);
             var caseDtos = _mapper.Map<IReadOnlyList<CaseDto>>(cases);
-            return new PagedResultDto<CaseDto>(casesCount, caseDtos);
+            return new PagedListResultDto<CaseDto>(query.PageNo, query.PageSize, casesPageCount, casesCount, caseDtos);
         }
     }
 }

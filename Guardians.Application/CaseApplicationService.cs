@@ -30,14 +30,14 @@ internal sealed class CaseApplicationService : ICaseApplicationService
             return new ResultDto<CaseDto>
                    {
                        Code = (int)HttpStatusCode.InternalServerError,
-                       Message = result.Errors.First().Message,
+                       Msg = result.Errors.First().Message,
                        Data = null
                    };
         }
         return new ResultDto<CaseDto>
                {
                    Code = (int)HttpStatusCode.Created,
-                   Message = HttpStatusCode.Created.ToString(),
+                   Msg = HttpStatusCode.Created.ToString(),
                    Data = result.Value
                };
     }
@@ -54,21 +54,21 @@ internal sealed class CaseApplicationService : ICaseApplicationService
                 return new ResultDto<CaseDto>
                        {
                            Code = (int)HttpStatusCode.NotFound,
-                           Message = HttpStatusCode.NotFound.ToString(),
+                           Msg = HttpStatusCode.NotFound.ToString(),
                            Data = null
                        };
             }
             return new ResultDto<CaseDto>
                    {
                        Code = (int)HttpStatusCode.InternalServerError,
-                       Message = firstMessage,
+                       Msg = firstMessage,
                        Data = null
                    };
         }
         return new ResultDto<CaseDto>
                {
                    Code = (int)HttpStatusCode.OK,
-                   Message = HttpStatusCode.OK.ToString(),
+                   Msg = HttpStatusCode.OK.ToString(),
                    Data = result.Value
                };
     }
@@ -85,21 +85,21 @@ internal sealed class CaseApplicationService : ICaseApplicationService
                 return new ResultDto<CaseDto>
                        {
                            Code = (int)HttpStatusCode.NotFound,
-                           Message = HttpStatusCode.NotFound.ToString(),
+                           Msg = HttpStatusCode.NotFound.ToString(),
                            Data = null
                        };
             }
             return new ResultDto<CaseDto>
                    {
                        Code = (int)HttpStatusCode.InternalServerError,
-                       Message = firstMessage,
+                       Msg = firstMessage,
                        Data = null
                    };
         }
         return new ResultDto<CaseDto>
                {
                    Code = (int)HttpStatusCode.OK,
-                   Message = HttpStatusCode.OK.ToString(),
+                   Msg = HttpStatusCode.OK.ToString(),
                    Data = result.Value
                };
     }
@@ -116,21 +116,21 @@ internal sealed class CaseApplicationService : ICaseApplicationService
                 return new ResultDto<CaseId>
                        {
                            Code = (int)HttpStatusCode.NotFound,
-                           Message = HttpStatusCode.NotFound.ToString(),
+                           Msg = HttpStatusCode.NotFound.ToString(),
                            Data = null
                        };
             }
             return new ResultDto<CaseId>
                    {
                        Code = (int)HttpStatusCode.InternalServerError,
-                       Message = firstMessage,
+                       Msg = firstMessage,
                        Data = null
                    };
         }
         return new ResultDto<CaseId>
                {
                    Code = (int)HttpStatusCode.OK,
-                   Message = HttpStatusCode.OK.ToString(),
+                   Msg = HttpStatusCode.OK.ToString(),
                    Data = caseID
                };
     }
@@ -144,26 +144,26 @@ internal sealed class CaseApplicationService : ICaseApplicationService
             return new ResultDto<CaseDto>
                    {
                        Code = (int)HttpStatusCode.NotFound,
-                       Message = HttpStatusCode.NotFound.ToString(),
+                       Msg = HttpStatusCode.NotFound.ToString(),
                        Data = null
                    };
         }
         return new ResultDto<CaseDto>
                {
                    Code = (int)HttpStatusCode.OK,
-                   Message = HttpStatusCode.OK.ToString(),
+                   Msg = HttpStatusCode.OK.ToString(),
                    Data = @case
                };
     }
 
     /// <inheritdoc />
-    public async Task<ResultDto<PagedResultDto<CaseDto>>> ListPagedCasesAsync(string? reporterNo, DateTimeOffset startDate, DateTimeOffset endDate, int pageNo = 1, int pageSize = 10)
+    public async Task<ResultDto<PagedListResultDto<CaseDto>>> ListPagedCasesAsync(string? reporterNo, DateTimeOffset startDate, DateTimeOffset endDate, int pageNo = 1, int pageSize = 10)
     {
         var cases = await _sender.Send(new ListPagedCasesQuery(reporterNo, startDate, endDate, pageNo, pageSize)).ConfigureAwait(false);
-        return new ResultDto<PagedResultDto<CaseDto>>
+        return new ResultDto<PagedListResultDto<CaseDto>>
                {
                    Code = (int)HttpStatusCode.OK,
-                   Message = HttpStatusCode.OK.ToString(),
+                   Msg = HttpStatusCode.OK.ToString(),
                    Data = cases
                };
     }
