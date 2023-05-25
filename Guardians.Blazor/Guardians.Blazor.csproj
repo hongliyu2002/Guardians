@@ -22,8 +22,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Guardians.Application\Guardians.Application.csproj" />
         <ProjectReference Include="..\Guardians.AspNetCore.Components.Server\Guardians.AspNetCore.Components.Server.csproj" />
+        <ProjectReference Include="..\Guardians.HttpClient\Guardians.HttpClient.csproj" />
     </ItemGroup>
 
     <ItemGroup>
