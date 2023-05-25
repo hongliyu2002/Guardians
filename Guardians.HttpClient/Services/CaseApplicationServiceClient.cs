@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using Fluxera.Extensions.Hosting.Modules.Application.Contracts.Dtos;
 using Fluxera.Extensions.Http;
 using Fluxera.Utilities.Extensions;
 using Guardians.Application.Contracts;
@@ -7,7 +6,7 @@ using Guardians.Application.Contracts.States;
 using Guardians.Domain.Shared;
 using JetBrains.Annotations;
 
-namespace Guardians.HttpClient;
+namespace Guardians.HttpClient.Services;
 
 [UsedImplicitly]
 internal sealed class CaseApplicationServiceClient : HttpClientServiceBase, ICaseApplicationService
