@@ -28,6 +28,7 @@ public class ReportViewModel : ReactiveObject
                    .Subscribe();
         Scenes = scenes;
         this.WhenAnyValue(vm => vm.SearchTerm)
+            .Throttle(TimeSpan.FromMilliseconds(100))
             .DistinctUntilChanged()
             .SelectMany(_ => SceneAppService.ListScenesAsync())
             .Where(result => result.Data != null)

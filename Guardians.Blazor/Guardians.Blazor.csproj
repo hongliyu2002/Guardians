@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="BouncyCastle.Cryptography" Version="2.2.1" />
         <PackageReference Include="DynamicData" Version="7.14.2" />
         <PackageReference Include="Fluxera.Extensions.Hosting.Modules.AspNetCore.HealthChecks" Version="7.2.5" />
         <PackageReference Include="Fluxera.Extensions.Hosting.Modules.MultiTenancy" Version="7.2.5" />
@@ -32,21 +33,6 @@
             <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
             <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
         </None>
-    </ItemGroup>
-
-    <ItemGroup>
-        <_ContentIncludedByDefault Remove="wwwroot\css\bootstrap\bootstrap.min.css" />
-        <_ContentIncludedByDefault Remove="wwwroot\css\bootstrap\bootstrap.min.css.map" />
-        <_ContentIncludedByDefault Remove="wwwroot\css\open-iconic\FONT-LICENSE" />
-        <_ContentIncludedByDefault Remove="wwwroot\css\open-iconic\font\css\open-iconic-bootstrap.min.css" />
-        <_ContentIncludedByDefault Remove="wwwroot\css\open-iconic\font\fonts\open-iconic.eot" />
-        <_ContentIncludedByDefault Remove="wwwroot\css\open-iconic\font\fonts\open-iconic.otf" />
-        <_ContentIncludedByDefault Remove="wwwroot\css\open-iconic\font\fonts\open-iconic.svg" />
-        <_ContentIncludedByDefault Remove="wwwroot\css\open-iconic\font\fonts\open-iconic.ttf" />
-        <_ContentIncludedByDefault Remove="wwwroot\css\open-iconic\font\fonts\open-iconic.woff" />
-        <_ContentIncludedByDefault Remove="wwwroot\css\open-iconic\ICON-LICENSE" />
-        <_ContentIncludedByDefault Remove="wwwroot\css\open-iconic\README.md" />
-        <_ContentIncludedByDefault Remove="wwwroot\css\site.css" />
     </ItemGroup>
 
     <ItemGroup>
