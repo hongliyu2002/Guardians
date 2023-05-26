@@ -11,11 +11,11 @@
   &lt;Assembly Path="C:\Users\hongl\.nuget\packages\madeyematt.aspnetcore.problemdetails\7.2.0\lib\net7.0\MadEyeMatt.AspNetCore.ProblemDetails.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Users\hongl\.nuget\packages\fluentresults.extensions.aspnetcore\0.1.0\lib\netstandard2.1\FluentResults.Extensions.AspNetCore.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Program Files\dotnet\packs\Microsoft.AspNetCore.App.Ref\7.0.1\ref\net7.0\Microsoft.AspNetCore.Mvc.Core.dll" /&gt;&#xD;
-  &lt;PhysicalFolder Path="C:\Users\liyuhong\.nuget\packages\system.reactive\6.0.0" Loaded="True" /&gt;&#xD;
   &lt;Assembly Path="C:\Users\liyuhong\.nuget\packages\fluxera.extensions.hosting.modules.aspnetcore.httpapi\7.2.5\lib\net7.0\Fluxera.Extensions.Hosting.Modules.AspNetCore.HttpApi.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\7.0.5\ref\net7.0\System.Runtime.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Program Files\dotnet\shared\Microsoft.NETCore.App\7.0.5\System.Private.CoreLib.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Users\liyuhong\.nuget\packages\asp.versioning.http\7.0.0\lib\net7.0\Asp.Versioning.Http.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Users\liyuhong\.nuget\packages\fluxera.extensions.hosting\7.1.6\lib\net7.0\Fluxera.Extensions.Hosting.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\7.0.5\Microsoft.Extensions.Options.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Users\hongl\.nuget\packages\mudblazor\6.2.5\lib\net7.0\MudBlazor.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>

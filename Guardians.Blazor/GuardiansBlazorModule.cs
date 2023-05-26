@@ -36,6 +36,7 @@ public sealed class GuardiansBlazorModule : ConfigureApplicationModule
             context.UseHsts();
         }
         // context.UseHttpsRedirection();
+        context.UseResponseCompression();
         context.UseStaticFiles();
         context.UseRouting();
         context.UseEndpoints();

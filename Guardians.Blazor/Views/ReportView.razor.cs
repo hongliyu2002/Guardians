@@ -19,7 +19,7 @@ public partial class ReportView : ReactiveInjectableComponentBase<ReportViewMode
     private IDisposable? _showSubmitCaseResultHandler;
 
     [Inject]
-    private IDialogService DialogService { get; set; } = default!;
+    private ISnackbar Snackbar { get; set; } = default!;
 
     [Inject]
     private NavigationManager NavigationManager { get; set; } = default!;
@@ -47,7 +47,7 @@ public partial class ReportView : ReactiveInjectableComponentBase<ReportViewMode
         _viewModelChangedSubscription = this.WhenAnyObservable(v => v.ViewModel!.Changed)
                                             .Throttle(TimeSpan.FromMilliseconds(100))
                                             .Subscribe(_ => InvokeAsync(StateHasChanged));
-        _showSubmitCaseResultHandler = ViewModel.ShowSubmitCaseResultInteraction.RegisterHandler(ShowSubmitCaseResultAsync);
+        _showSubmitCaseResultHandler = ViewModel.ShowSubmitCaseResultInteraction.RegisterHandler(ShowSubmitCaseResult);
     }
 
     private void Deactivate()
@@ -67,17 +67,24 @@ public partial class ReportView : ReactiveInjectableComponentBase<ReportViewMode
         }
         var decryptedContent = Encryptor.DecryptData(encryptedParam[0]!, Encryptor.DailyPublicKeyBase64, Encoding.UTF8);
         var knightInfo = JsonConvert.DeserializeObject<KnightInfo>(decryptedContent);
-        if (ViewModel != null && knightInfo != null)
+        if (ViewModel != null)
         {
-            ViewModel.ReporterNo = knightInfo.KnightOid;
-            ViewModel.ReporterName = knightInfo.KnightName;
-            ViewModel.ReporterMobile = knightInfo.KnightMobile;
+            if (knightInfo != null)
+            {
+                ViewModel.ReporterNo = knightInfo.KnightOid;
+                ViewModel.ReporterName = knightInfo.KnightName;
+                ViewModel.ReporterMobile = knightInfo.KnightMobile;
+            }
+            ViewModel.SearchTerm = "All";
         }
     }
 
-    private async Task ShowSubmitCaseResultAsync(InteractionContext<string, Unit> interaction)
+    private void ShowSubmitCaseResult(InteractionContext<(string Message, bool Success), Unit> interaction)
     {
-        await DialogService.ShowMessageBox("提交结果", interaction.Input, "确定");
+        // await DialogService.ShowMessageBox("提交结果", interaction.Input, "确定");
+        Snackbar.Clear();
+        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopCenter;
+        Snackbar.Add(interaction.Input.Message, interaction.Input.Success ? Severity.Success : Severity.Error);
         interaction.SetOutput(Unit.Default);
     }
 }

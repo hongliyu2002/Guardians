@@ -14,7 +14,6 @@ namespace Guardians.Blazor.ViewModels;
 
 public class ReportViewModel : ReactiveObject
 {
-
     /// <inheritdoc />
     public ReportViewModel(ISceneApplicationService sceneAppService, ICaseApplicationService caseAppService)
     {
@@ -28,7 +27,7 @@ public class ReportViewModel : ReactiveObject
                    .Subscribe();
         Scenes = scenes;
         this.WhenAnyValue(vm => vm.SearchTerm)
-            .Throttle(TimeSpan.FromMilliseconds(100))
+            .Where(term => term.IsNotNullOrEmpty())
             .DistinctUntilChanged()
             .SelectMany(_ => SceneAppService.ListScenesAsync())
             .Where(result => result.Data != null)
@@ -83,7 +82,7 @@ public class ReportViewModel : ReactiveObject
 
     #region Interactions
 
-    public Interaction<string, Unit> ShowSubmitCaseResultInteraction { get; } = new();
+    public Interaction<(string Message, bool Success), Unit> ShowSubmitCaseResultInteraction { get; } = new();
 
     #endregion
 
@@ -106,7 +105,7 @@ public class ReportViewModel : ReactiveObject
                                                               ReporterName = ReporterName,
                                                               ReporterMobile = ReporterMobile
                                                           });
-        await ShowSubmitCaseResultInteraction.Handle(result.Code == 200 ? "案件提交成功" : "案件提交失败");
+        await ShowSubmitCaseResultInteraction.Handle(result.Code == 200 ? (Message: "案件已提交", Success: true) : (Message: "案件提交失敗", Success: false));
     }
 
     #endregion
