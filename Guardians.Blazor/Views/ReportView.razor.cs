@@ -84,7 +84,7 @@ public partial class ReportView : ReactiveInjectableComponentBase<ReportViewMode
         // await DialogService.ShowMessageBox("提交结果", interaction.Input, "确定");
         Snackbar.Clear();
         Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopCenter;
-        Snackbar.Add(interaction.Input.Message, interaction.Input.Success ? Severity.Success : Severity.Error);
+        Snackbar.Add(interaction.Input.Message, interaction.Input.Success ? Severity.Normal : Severity.Warning);
         interaction.SetOutput(Unit.Default);
     }
 }

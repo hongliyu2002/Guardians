@@ -105,7 +105,7 @@ public class ReportViewModel : ReactiveObject
                                                               ReporterName = ReporterName,
                                                               ReporterMobile = ReporterMobile
                                                           });
-        await ShowSubmitCaseResultInteraction.Handle(result.Code == 200 ? (Message: "案件已提交", Success: true) : (Message: "案件提交失敗", Success: false));
+        await ShowSubmitCaseResultInteraction.Handle(result.Code == 200 ? (Message: "上报成功", Success: true) : (Message: "上报失败，请重试", Success: false));
     }
 
     #endregion
