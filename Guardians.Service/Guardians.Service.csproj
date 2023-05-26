@@ -7,23 +7,23 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.AspNetCore.HealthChecks" Version="7.2.5"/>
-        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.MultiTenancy" Version="7.2.5"/>
-        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.Serilog" Version="7.2.5"/>
-        <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.4.0"/>
-        <PackageReference Include="Serilog.AspNetCore" Version="7.0.0"/>
-        <PackageReference Include="Serilog.Sinks.Async" Version="1.5.0"/>
-        <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0"/>
-        <PackageReference Include="Serilog.Sinks.File" Version="5.0.0"/>
+        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.AspNetCore.HealthChecks" Version="7.2.5" />
+        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.MultiTenancy" Version="7.2.5" />
+        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.Serilog" Version="7.2.5" />
+        <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.4.0" />
+        <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
+        <PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
+        <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
+        <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Guardians.Application\Guardians.Application.csproj"/>
-        <ProjectReference Include="..\Guardians.HttpApi\Guardians.HttpApi.csproj"/>
+        <ProjectReference Include="..\Guardians.Application\Guardians.Application.csproj" />
+        <ProjectReference Include="..\Guardians.HttpApi\Guardians.HttpApi.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Logs\"/>
+        <Folder Include="Logs\" />
     </ItemGroup>
 
     <ItemGroup>

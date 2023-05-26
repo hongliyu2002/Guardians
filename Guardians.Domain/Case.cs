@@ -26,7 +26,7 @@ public sealed class Case : AggregateRoot<Case, CaseId>, IAuditedObject, ISoftDel
     
     public string? ReporterMobile { get; set; }
     
-    public CaseStatus Status { get; set; } = default!;
+    public CaseStatus Status { get; set; }
 
     public DateTimeOffset? CreatedAt { get; set; }
 
