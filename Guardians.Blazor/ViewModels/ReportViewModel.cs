@@ -81,7 +81,7 @@ public class ReportViewModel : ReactiveObject
 
     #region Interactions
 
-    public Interaction<(string Message, bool Success), Unit> ShowSubmitCaseResultInteraction { get; } = new();
+    public Interaction<(string Message, bool Success, Guid? CaseId), Unit> ShowSubmitCaseResultInteraction { get; } = new();
 
     #endregion
 
@@ -104,7 +104,7 @@ public class ReportViewModel : ReactiveObject
                                                               ReporterName = ReporterName,
                                                               ReporterMobile = ReporterMobile
                                                           });
-        await ShowSubmitCaseResultInteraction.Handle(result.Code == 200 ? (Message: "上报成功", Success: true) : (Message: "上报失败，请重试", Success: false));
+        await ShowSubmitCaseResultInteraction.Handle(result.Code == 200 ? (Message: "上报成功", Success: true, CaseId: result.Data?.ID.Value) : (Message: "上报失败，请重试", Success: false, CaseId: null));
     }
 
     #endregion

@@ -80,12 +80,16 @@ public partial class ReportView : ReactiveInjectableComponentBase<ReportViewMode
         }
     }
 
-    private void ShowSubmitCaseResult(InteractionContext<(string Message, bool Success), Unit> interaction)
+    private void ShowSubmitCaseResult(InteractionContext<(string Message, bool Success, Guid? CaseId), Unit> interaction)
     {
         // await DialogService.ShowMessageBox("提交结果", interaction.Input, "确定");
         Snackbar.Clear();
         Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopCenter;
         Snackbar.Add(interaction.Input.Message, interaction.Input.Success ? Severity.Normal : Severity.Warning);
+        if (interaction.Input.CaseId.IsNotNull())
+        {
+            NavigationManager.NavigateTo($"/record?id={interaction.Input.CaseId}", false);
+        }
         interaction.SetOutput(Unit.Default);
     }
 }

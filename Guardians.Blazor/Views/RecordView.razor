@@ -78,14 +78,14 @@
                             <MudText Typo="Typo.subtitle1">@ViewModel.CurrentCase.SceneId.ToString("N")</MudText>
                         </MudStack>
                     </MudListItem>
-                    <MudListItem>
-                        <MudStack Row="true" Justify="Justify.SpaceBetween">
-                            <MudText Typo="Typo.subtitle1">上报地点</MudText>
-                            <MudText Typo="Typo.subtitle1">@ViewModel.CurrentCase.Address</MudText>
-                        </MudStack>
-                    </MudListItem>
                     @if (ViewModel.CurrentCase.StatusCode != (int)CaseStatus.Reviewing)
                     {
+                        <MudListItem>
+                            <MudStack Row="true" Justify="Justify.SpaceBetween">
+                                <MudText Typo="Typo.subtitle1">上报地点</MudText>
+                                <MudText Typo="Typo.subtitle1">@ViewModel.CurrentCase.Address</MudText>
+                            </MudStack>
+                        </MudListItem>
                         <MudListItem>
                             <MudStack Row="true" Justify="Justify.SpaceBetween">
                                 <MudText Typo="Typo.subtitle1">事件详情</MudText>
