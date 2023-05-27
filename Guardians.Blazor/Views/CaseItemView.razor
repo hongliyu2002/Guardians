@@ -19,6 +19,6 @@ else
             }
         </MudStack>
         <MudText Typo="Typo.subtitle2" Style="color: gray">上报时间: @ViewModel.ReportedAt.ToString("yyyy-MM-dd HH:mm")</MudText>
-        <MudText Typo="Typo.subtitle2" Style="color: gray">事件ID: @ViewModel.Id</MudText>
+        <MudText Typo="Typo.subtitle2" Style="color: gray">事件ID: @ViewModel.Id.ToString("N")</MudText>
     </MudStack>
 }
