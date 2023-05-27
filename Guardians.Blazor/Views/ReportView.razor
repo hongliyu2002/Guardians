@@ -2,7 +2,7 @@
 @inherits ReactiveInjectableComponentBase<ReportViewModel>
 <PageTitle>事件上报</PageTitle>
 <MudStack Style="height: 100vh; padding-top: 10px">
-    <MudText Typo="Typo.subtitle1" Style="color: grey">请选择确认场景</MudText>
+    <MudText Typo="Typo.subtitle1" Style="color: grey; margin-left: 16px">请选择确认场景</MudText>
     @if (ViewModel == null)
     {
         <MudText Typo="Typo.subtitle1">拼命加载中...</MudText>
@@ -10,7 +10,7 @@
     else
     {
         <MudPaper Square="true" Elevation="0" Style="height: calc(100vh - 140px); overflow: auto; background-color: transparent">
-            <MudList Clickable="true" @bind-SelectedValue="@ViewModel.CurrentScene" DisablePadding="true" Style="background-color: white">
+            <MudList Clickable="true" @bind-SelectedValue="@ViewModel.CurrentScene" DisablePadding="true" Color="Color.Info" Style="background-color: white">
                 @* <MudListSubheader> *@
                 @*     <MudText Typo="Typo.subtitle2">@ViewModel.ReporterName @ViewModel.ReporterMobile</MudText> *@
                 @* </MudListSubheader> *@
@@ -22,7 +22,7 @@
                             <SceneItemView ViewModel="scene" />
                             @if (scene == ViewModel.CurrentScene)
                             {
-                                <MudIcon Icon="@Icons.Material.Filled.Check" Color="Color.Primary" />
+                                <MudIcon Icon="@Icons.Material.Filled.Check" Color="Color.Info" />
                             }
                         </MudStack>
                     </MudListItem>
@@ -30,7 +30,7 @@
                 }
             </MudList>
         </MudPaper>
-        <MudButton StartIcon="@Icons.Material.Filled.Save" Command="@ViewModel.SubmitCaseCommand" Disabled="@ViewModel.CannotSubmitCase" Variant="Variant.Filled" Style="background-color: royalblue; color: white" Size="Size.Large">
+        <MudButton StartIcon="@Icons.Material.Filled.Save" Command="@ViewModel.SubmitCaseCommand" Disabled="@ViewModel.CannotSubmitCase" Variant="Variant.Filled" Color="Color.Info" Size="Size.Large">
             <MudText Typo="Typo.subtitle1">确认</MudText>
         </MudButton>
     }

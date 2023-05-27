@@ -19,8 +19,8 @@
                 <MudTimeline TimelinePosition="TimelinePosition.Left">
                     @if (ViewModel.CurrentCase.StatusCode == (int)CaseStatus.Reviewing)
                     {
-                        <MudTimelineItem Variant="Variant.Filled" Color="Color.Primary" Size="Size.Small">
-                            <MudText Typo="Typo.subtitle1" Color="Color.Primary" Style="font-weight: bolder">申报审核中</MudText>
+                        <MudTimelineItem Variant="Variant.Filled" Color="Color.Info" Size="Size.Small">
+                            <MudText Typo="Typo.subtitle1" Color="Color.Info" Style="font-weight: bolder">申报审核中</MudText>
                         </MudTimelineItem>
                     }
                     else
@@ -31,8 +31,8 @@
                     }
                     @if (ViewModel.CurrentCase.StatusCode == (int)CaseStatus.Processing)
                     {
-                        <MudTimelineItem Variant="Variant.Filled" Color="Color.Primary" Size="Size.Small">
-                            <MudText Typo="Typo.subtitle1" Color="Color.Primary" Style="font-weight: bolder">相关部分处理中</MudText>
+                        <MudTimelineItem Variant="Variant.Filled" Color="Color.Info" Size="Size.Small">
+                            <MudText Typo="Typo.subtitle1" Color="Color.Info" Style="font-weight: bolder">相关部分处理中</MudText>
                         </MudTimelineItem>
                     }
                     else
@@ -43,8 +43,8 @@
                     }
                     @if (ViewModel.CurrentCase.StatusCode == (int)CaseStatus.Completed)
                     {
-                        <MudTimelineItem Variant="Variant.Filled" Color="Color.Primary" Size="Size.Small">
-                            <MudText Typo="Typo.subtitle1" Color="Color.Primary" Style="font-weight: bolder">已完结</MudText>
+                        <MudTimelineItem Variant="Variant.Filled" Color="Color.Info" Size="Size.Small">
+                            <MudText Typo="Typo.subtitle1" Color="Color.Info" Style="font-weight: bolder">已完结</MudText>
                         </MudTimelineItem>
                     }
                     else
