@@ -12,14 +12,15 @@
             <MudListSubheader>
                 <MudText Typo="Typo.subtitle2">@ViewModel.ReporterNo</MudText>
             </MudListSubheader>
-            <MudDivider />
             @foreach (var theCase in ViewModel.Cases)
             {
-                <MudListItem Value="theCase" Style="background-color: white" OnClick="NavigateToDetail">
-                    <CaseItemView ViewModel="theCase" />
+                <MudListItem Value="theCase" OnClick="NavigateToDetail">
+                    <MudPaper Elevation="1">
+                        <CaseItemView ViewModel="theCase" />
+                    </MudPaper>
                 </MudListItem>
-                <MudDivider />
             }
         </MudList>
+        <MudText Typo="Typo.subtitle2" Align="Align.Center" Style="color: gray">仅显示近3个月的数据</MudText>
     }
 </MudStack>

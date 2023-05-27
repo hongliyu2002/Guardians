@@ -21,7 +21,6 @@ public class ReportViewModel : ReactiveObject
         CaseAppService = Guard.Against.Null(caseAppService, nameof(caseAppService));
         var scenesCache = new SourceCache<SceneItemViewModel, Guid>(scene => scene.Id);
         scenesCache.Connect()
-                   .AutoRefresh(scene => scene.Title)
                    .Sort(SortExpressionComparer<SceneItemViewModel>.Ascending(scene => scene.Id))
                    .Bind(out var scenes)
                    .Subscribe();

@@ -100,7 +100,7 @@ internal sealed class CaseApplicationServiceClient : HttpClientServiceBase, ICas
         try
         {
             var query = new StringBuilder();
-            query.Append($"?pageNo={pageNo}&pageSize={pageSize}&startDate={startDate:yyyy-MM-dd}&endDate={endDate:yyyy-MM-dd}");
+            query.Append($"?pageNo={pageNo}&pageSize={pageSize}&startDate={startDate:yyyy-MM-dd HH:mm:ss}&endDate={endDate:yyyy-MM-dd HH:mm:ss}");
             if (reporterNo.IsNotNullOrEmpty())
             {
                 query.Append($"&reporterNo={reporterNo}");
