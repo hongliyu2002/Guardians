@@ -16,7 +16,6 @@ internal sealed class MappingProfile : Profile
            .ForMember(dest => dest.SceneTitle, opt => opt.MapFrom(src => src.Scene.Title))
            .ForMember(dest => dest.StatusCode, opt => opt.MapFrom(src => src.Status))
            .ForMember(dest => dest.StatusName, opt => opt.MapFrom(src => src.Status == CaseStatus.Reviewing ? "待核实" : src.Status == CaseStatus.Processing ? "处理中" : "已完结"));
-        CreateMap<Scene, SceneDto>()
-           .ReverseMap();
+        CreateMap<Scene, SceneDto>().ReverseMap();
     }
 }

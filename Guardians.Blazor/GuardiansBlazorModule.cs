@@ -21,6 +21,7 @@ public sealed class GuardiansBlazorModule : ConfigureApplicationModule
     {
         context.Log("AddMudServices", services => services.AddMudServices());
         context.Log("AddReportViewModel", services => services.AddScoped<ReportViewModel>());
+        context.Log("AddRecordViewModel", services => services.AddScoped<RecordViewModel>());
     }
 
     /// <inheritdoc />
