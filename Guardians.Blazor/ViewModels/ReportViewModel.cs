@@ -39,6 +39,7 @@ public class ReportViewModel : ReactiveObject
     #region Properties
 
     public ISceneApplicationService SceneAppService { get; }
+    
     public ICaseApplicationService CaseAppService { get; }
 
     public ReadOnlyObservableCollection<SceneItemViewModel> Scenes { get; }

@@ -1,0 +1,25 @@
+﻿@page "/records"
+@inherits ReactiveInjectableComponentBase<RecordListViewModel>
+
+<MudStack Style="padding-top: 10px">
+    @if (ViewModel == null)
+    {
+        <MudText Typo="Typo.subtitle1">拼命加载中...</MudText>
+    }
+    else
+    {
+        <MudList Clickable="true" @bind-SelectedValue="@ViewModel.CurrentCase">
+            <MudListSubheader>
+                <MudText Typo="Typo.subtitle2">@ViewModel.ReporterNo</MudText>
+            </MudListSubheader>
+            <MudDivider />
+            @foreach (var theCase in ViewModel.Cases)
+            {
+                <MudListItem Value="theCase" Style="background-color: white" OnClick="NavigateToDetail">
+                    <CaseItemView ViewModel="theCase" />
+                </MudListItem>
+                <MudDivider />
+            }
+        </MudList>
+    }
+</MudStack>
