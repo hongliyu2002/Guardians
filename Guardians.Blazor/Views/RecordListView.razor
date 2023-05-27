@@ -9,9 +9,9 @@
     else
     {
         <MudList Clickable="true" @bind-SelectedValue="@ViewModel.CurrentCase">
-            <MudListSubheader>
-                <MudText Typo="Typo.subtitle2">@ViewModel.ReporterNo</MudText>
-            </MudListSubheader>
+            @* <MudListSubheader> *@
+            @*     <MudText Typo="Typo.subtitle2">@ViewModel.ReporterNo</MudText> *@
+            @* </MudListSubheader> *@
             @foreach (var theCase in ViewModel.Cases)
             {
                 <MudListItem Value="theCase" OnClick="NavigateToDetail">

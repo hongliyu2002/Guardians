@@ -11,9 +11,9 @@
     {
         <MudPaper Square="true" Elevation="0" Style="height: calc(100vh - 140px); overflow: auto; background-color: transparent">
             <MudList Clickable="true" @bind-SelectedValue="@ViewModel.CurrentScene" DisablePadding="true" Style="background-color: white">
-                <MudListSubheader>
-                    <MudText Typo="Typo.subtitle2">@ViewModel.ReporterName @ViewModel.ReporterMobile</MudText>
-                </MudListSubheader>
+                @* <MudListSubheader> *@
+                @*     <MudText Typo="Typo.subtitle2">@ViewModel.ReporterName @ViewModel.ReporterMobile</MudText> *@
+                @* </MudListSubheader> *@
                 <MudDivider />
                 @foreach (var scene in ViewModel.Scenes)
                 {
