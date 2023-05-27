@@ -17,7 +17,7 @@ public class RecordListViewModel : ReactiveObject
         CaseAppService = Guard.Against.Null(caseAppService, nameof(caseAppService));
         var casesCache = new SourceCache<CaseItemViewModel, Guid>(@case => @case.Id);
         casesCache.Connect()
-                  .Sort(SortExpressionComparer<CaseItemViewModel>.Descending(@case => @case.Id))
+                  .Sort(SortExpressionComparer<CaseItemViewModel>.Descending(@case => @case.ReportedAt))
                   .Bind(out var cases)
                   .Subscribe();
         Cases = cases;
