@@ -61,49 +61,77 @@
                         <MudText Typo="Typo.h6" Style="font-weight: bolder">详细信息</MudText>
                     </MudListSubheader>
                     <MudListItem>
-                        <MudStack Row="true" Justify="Justify.SpaceBetween">
-                            <MudText Typo="Typo.subtitle1">上报场景</MudText>
-                            <MudText Typo="Typo.subtitle1">@ViewModel.CurrentCase.SceneTitle</MudText>
-                        </MudStack>
+                        <MudGrid>
+                            <MudItem xs="3">
+                                <MudText Typo="Typo.subtitle1">上报场景</MudText>
+                            </MudItem>
+                            <MudItem xs="9">
+                                <MudText Typo="Typo.subtitle1" Align="Align.Right">@ViewModel.CurrentCase.SceneTitle</MudText>
+                            </MudItem>
+                        </MudGrid>
                     </MudListItem>
                     <MudListItem>
-                        <MudStack Row="true" Justify="Justify.SpaceBetween">
-                            <MudText Typo="Typo.subtitle1">上报时间</MudText>
-                            <MudText Typo="Typo.subtitle1">@ViewModel.CurrentCase.ReportedAt.ToString("yyyy-MM-dd HH:mm")</MudText>
-                        </MudStack>
+                        <MudGrid>
+                            <MudItem xs="3">
+                                <MudText Typo="Typo.subtitle1">上报时间</MudText>
+                            </MudItem>
+                            <MudItem xs="9">
+                                <MudText Typo="Typo.subtitle1" Align="Align.Right">@ViewModel.CurrentCase.ReportedAt.ToString("yyyy-MM-dd HH:mm")</MudText>
+                            </MudItem>
+                        </MudGrid>
                     </MudListItem>
                     <MudListItem>
-                        <MudStack Row="true" Justify="Justify.SpaceBetween">
-                            <MudText Typo="Typo.subtitle1">事件ID</MudText>
-                            <MudText Typo="Typo.subtitle1">@ViewModel.CurrentCase.SceneId.ToString("N")</MudText>
-                        </MudStack>
+                        <MudGrid>
+                            <MudItem xs="3">
+                                <MudText Typo="Typo.subtitle1">事件ID</MudText>
+                            </MudItem>
+                            <MudItem xs="9">
+                                <MudText Typo="Typo.subtitle1" Align="Align.Right">@ViewModel.CurrentCase.SceneId.ToString("N")</MudText>
+                            </MudItem>
+                        </MudGrid>
                     </MudListItem>
                     @if (ViewModel.CurrentCase.StatusCode != (int)CaseStatus.Reviewing)
                     {
                         <MudListItem>
-                            <MudStack Row="true" Justify="Justify.SpaceBetween">
-                                <MudText Typo="Typo.subtitle1">上报地点</MudText>
-                                <MudText Typo="Typo.subtitle1">@ViewModel.CurrentCase.Address</MudText>
-                            </MudStack>
+                            <MudGrid>
+                                <MudItem xs="3">
+                                    <MudText Typo="Typo.subtitle1">上报地点</MudText>
+                                </MudItem>
+                                <MudItem xs="9">
+                                    <MudText Typo="Typo.subtitle1" Align="Align.Right">@ViewModel.CurrentCase.Address</MudText>
+                                </MudItem>
+                            </MudGrid>
                         </MudListItem>
                         <MudListItem>
-                            <MudStack Row="true" Justify="Justify.SpaceBetween">
-                                <MudText Typo="Typo.subtitle1">事件详情</MudText>
-                                <MudText Typo="Typo.subtitle1">@ViewModel.CurrentCase.Description</MudText>
-                            </MudStack>
+                            <MudGrid>
+                                <MudItem xs="3">
+                                    <MudText Typo="Typo.subtitle1">事件详情</MudText>
+                                </MudItem>
+                                <MudItem xs="9">
+                                    <MudText Typo="Typo.subtitle1" Align="Align.Right">@ViewModel.CurrentCase.Description</MudText>
+                                </MudItem>
+                            </MudGrid>
                         </MudListItem>
                     }
                     <MudListItem>
-                        <MudStack Row="true" Justify="Justify.SpaceBetween">
-                            <MudText Typo="Typo.subtitle1">联系人</MudText>
-                            <MudText Typo="Typo.subtitle1">@ViewModel.CurrentCase.ReporterName</MudText>
-                        </MudStack>
+                        <MudGrid>
+                            <MudItem xs="3">
+                                <MudText Typo="Typo.subtitle1">联系人</MudText>
+                            </MudItem>
+                            <MudItem xs="9">
+                                <MudText Typo="Typo.subtitle1" Align="Align.Right">@ViewModel.CurrentCase.ReporterName</MudText>
+                            </MudItem>
+                        </MudGrid>
                     </MudListItem>
                     <MudListItem>
-                        <MudStack Row="true" Justify="Justify.SpaceBetween">
-                            <MudText Typo="Typo.subtitle1">联系方式</MudText>
-                            <MudText Typo="Typo.subtitle1">@ViewModel.CurrentCase.ReporterMobile</MudText>
-                        </MudStack>
+                        <MudGrid>
+                            <MudItem xs="3">
+                                <MudText Typo="Typo.subtitle1">联系方式</MudText>
+                            </MudItem>
+                            <MudItem xs="9">
+                                <MudText Typo="Typo.subtitle1" Align="Align.Right">@ViewModel.CurrentCase.ReporterMobile</MudText>
+                            </MudItem>
+                        </MudGrid>
                     </MudListItem>
                 </MudList>
             </MudPaper>
