@@ -59,13 +59,14 @@ public partial class ReportView : ReactiveInjectableComponentBase<ReportViewMode
     protected void ParseKnight()
     {
         var uri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);
-        var query = QueryHelpers.ParseQuery(uri.Query);
+        var uriquery = uri.Query.Replace("+", "%2B");
+        var query = QueryHelpers.ParseQuery(uriquery);
         var paramExists = query.TryGetValue("param", out var encryptedParam);
         if (!paramExists || encryptedParam.IsNullOrEmpty())
         {
             return;
         }
-        var decryptedContent = Encryptor.DecryptData(encryptedParam[0]!, Encryptor.DailyPublicKeyBase64, Encoding.UTF8);
+        var decryptedContent = Encryptor.DecryptData(encryptedParam.ToString(), Encryptor.DailyPublicKeyBase64, Encoding.UTF8);
         var knightInfo = JsonConvert.DeserializeObject<KnightInfo>(decryptedContent);
         if (ViewModel != null)
         {

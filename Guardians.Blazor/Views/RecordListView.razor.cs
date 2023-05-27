@@ -1,5 +1,6 @@
 ﻿using System.Reactive.Linq;
 using System.Text;
+using System.Web;
 using Fluxera.Utilities.Extensions;
 using Guardians.Blazor.Models;
 using Guardians.Blazor.ViewModels;
@@ -51,13 +52,14 @@ public partial class RecordListView : ReactiveInjectableComponentBase<RecordList
     protected void ParseKnight()
     {
         var uri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);
-        var query = QueryHelpers.ParseQuery(uri.Query);
+        var uriquery = uri.Query.Replace("+", "%2B");
+        var query = QueryHelpers.ParseQuery(uriquery);
         var paramExists = query.TryGetValue("param", out var encryptedParam);
         if (!paramExists || encryptedParam.IsNullOrEmpty())
         {
             return;
         }
-        var decryptedContent = Encryptor.DecryptData(encryptedParam[0]!, Encryptor.DailyPublicKeyBase64, Encoding.UTF8);
+        var decryptedContent = Encryptor.DecryptData(encryptedParam.ToString(), Encryptor.DailyPublicKeyBase64, Encoding.UTF8);
         var knightInfo = JsonConvert.DeserializeObject<KnightInfo>(decryptedContent);
         if (ViewModel != null)
         {
