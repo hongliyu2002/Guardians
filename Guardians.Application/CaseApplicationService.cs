@@ -1,9 +1,12 @@
 ﻿using System.Net;
+using System.Text;
+using System.Text.Json;
 using Fluxera.Guards;
 using Guardians.Application.Contracts;
 using Guardians.Application.Contracts.Commands;
 using Guardians.Application.Contracts.Queries;
 using Guardians.Application.Contracts.States;
+using Guardians.Application.Contracts.Utils;
 using Guardians.Domain.Shared;
 using JetBrains.Annotations;
 using MediatR;
@@ -159,6 +162,29 @@ internal sealed class CaseApplicationService : ICaseApplicationService
     public async Task<ResultDto<PagedListResultDto<CaseDto>>> ListPagedCasesAsync(string? reporterNo, DateTimeOffset startDate, DateTimeOffset endDate, int pageNo = 1, int pageSize = 10)
     {
         var cases = await _sender.Send(new ListPagedCasesQuery(reporterNo, startDate, endDate, pageNo, pageSize));
+        return new ResultDto<PagedListResultDto<CaseDto>>
+               {
+                   Code = (int)HttpStatusCode.OK,
+                   Msg = HttpStatusCode.OK.ToString(),
+                   Data = cases
+               };
+    }
+
+    /// <inheritdoc />
+    public async Task<ResultDto<PagedListResultDto<CaseDto>>> GetPagedCasesAsync(EncryptedQueryDto input)
+    {
+        var queryJson = Encryptor.DecryptData(input.Param, Encryptor.DailyPublicKeyBase64, Encoding.UTF8);
+        var queryDto = JsonSerializer.Deserialize<QueryDto>(queryJson);
+        if (queryDto == null)
+        {
+            return new ResultDto<PagedListResultDto<CaseDto>>
+                   {
+                       Code = (int)HttpStatusCode.BadRequest,
+                       Msg = HttpStatusCode.BadRequest.ToString(),
+                       Data = null
+                   };
+        }
+        var cases = await _sender.Send(new GetPagedCasesQuery(queryDto.StartDate, queryDto.EndDate, queryDto.PageNo, queryDto.PageSize));
         return new ResultDto<PagedListResultDto<CaseDto>>
                {
                    Code = (int)HttpStatusCode.OK,

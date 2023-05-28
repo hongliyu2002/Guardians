@@ -1,13 +1,14 @@
 ﻿using System.Reactive;
 using System.Reactive.Linq;
 using System.Text;
+using System.Text.Json;
 using Fluxera.Utilities.Extensions;
+using Guardians.Application.Contracts.Utils;
 using Guardians.Blazor.Models;
 using Guardians.Blazor.ViewModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.WebUtilities;
 using MudBlazor;
-using Newtonsoft.Json;
 using ReactiveUI;
 using ReactiveUI.Blazor;
 
@@ -44,9 +45,7 @@ public partial class ReportView : ReactiveInjectableComponentBase<ReportViewMode
         {
             return;
         }
-        _viewModelChangedSubscription = this.WhenAnyObservable(v => v.ViewModel!.Changed)
-                                            .Throttle(TimeSpan.FromMilliseconds(100))
-                                            .Subscribe(_ => InvokeAsync(StateHasChanged));
+        _viewModelChangedSubscription = this.WhenAnyObservable(v => v.ViewModel!.Changed).Throttle(TimeSpan.FromMilliseconds(100)).Subscribe(_ => InvokeAsync(StateHasChanged));
         _showSubmitCaseResultHandler = ViewModel.ShowSubmitCaseResultInteraction.RegisterHandler(ShowSubmitCaseResult);
     }
 
@@ -67,7 +66,7 @@ public partial class ReportView : ReactiveInjectableComponentBase<ReportViewMode
             return;
         }
         var decryptedContent = Encryptor.DecryptData(encryptedParam.ToString(), Encryptor.DailyPublicKeyBase64, Encoding.UTF8);
-        var knightInfo = JsonConvert.DeserializeObject<KnightInfo>(decryptedContent);
+        var knightInfo = JsonSerializer.Deserialize<KnightInfo>(decryptedContent);
         if (ViewModel != null)
         {
             if (knightInfo != null)

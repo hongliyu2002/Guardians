@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 namespace Guardians.Application.Contracts.States;
 
 [PublicAPI]
+[Serializable]
 public sealed class CaseForCreationDto
 {
     public SceneId SceneID { get; set; } = default!;

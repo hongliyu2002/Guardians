@@ -114,4 +114,20 @@ internal sealed class CaseApplicationServiceClient : HttpClientServiceBase, ICas
             return new ResultDto<PagedListResultDto<CaseDto>> { Code = 500, Msg = ex.Message };
         }
     }
+
+    /// <inheritdoc />
+    public async Task<ResultDto<PagedListResultDto<CaseDto>>> GetPagedCasesAsync(EncryptedQueryDto input)
+    {
+        try
+        {
+            var content = input.AsJsonContent();
+            var response = await HttpClient.PostAsync("/api/cases/list", content);
+            var result = await response.Content.ReadAsAsync<ResultDto<PagedListResultDto<CaseDto>>>();
+            return result;
+        }
+        catch (Exception ex)
+        {
+            return new ResultDto<PagedListResultDto<CaseDto>> { Code = 500, Msg = ex.Message };
+        }
+    }
 }

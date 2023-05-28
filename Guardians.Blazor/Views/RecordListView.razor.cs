@@ -1,12 +1,12 @@
 ﻿using System.Reactive.Linq;
 using System.Text;
-using System.Web;
+using System.Text.Json;
 using Fluxera.Utilities.Extensions;
+using Guardians.Application.Contracts.Utils;
 using Guardians.Blazor.Models;
 using Guardians.Blazor.ViewModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.WebUtilities;
-using Newtonsoft.Json;
 using ReactiveUI;
 using ReactiveUI.Blazor;
 
@@ -39,9 +39,7 @@ public partial class RecordListView : ReactiveInjectableComponentBase<RecordList
         {
             return;
         }
-        _viewModelChangedSubscription = this.WhenAnyObservable(v => v.ViewModel!.Changed)
-                                            .Throttle(TimeSpan.FromMilliseconds(100))
-                                            .Subscribe(_ => InvokeAsync(StateHasChanged));
+        _viewModelChangedSubscription = this.WhenAnyObservable(v => v.ViewModel!.Changed).Throttle(TimeSpan.FromMilliseconds(100)).Subscribe(_ => InvokeAsync(StateHasChanged));
     }
 
     private void Deactivate()
@@ -60,7 +58,7 @@ public partial class RecordListView : ReactiveInjectableComponentBase<RecordList
             return;
         }
         var decryptedContent = Encryptor.DecryptData(encryptedParam.ToString(), Encryptor.DailyPublicKeyBase64, Encoding.UTF8);
-        var knightInfo = JsonConvert.DeserializeObject<KnightInfo>(decryptedContent);
+        var knightInfo = JsonSerializer.Deserialize<KnightInfo>(decryptedContent);
         if (ViewModel != null)
         {
             if (knightInfo != null)
@@ -72,7 +70,7 @@ public partial class RecordListView : ReactiveInjectableComponentBase<RecordList
 
     private void NavigateToDetail()
     {
-        if (ViewModel != null && ViewModel.CurrentCase != null)
+        if (ViewModel is { CurrentCase: not null })
         {
             var currentCase = (CaseItemViewModel)ViewModel.CurrentCase;
             NavigationManager.NavigateTo($"/record?id={currentCase.Id}", false);

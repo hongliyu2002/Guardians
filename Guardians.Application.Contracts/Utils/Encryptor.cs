@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Org.BouncyCastle.Security;
 
-namespace Guardians.Blazor;
+namespace Guardians.Application.Contracts.Utils;
 
 public static class Encryptor
 {

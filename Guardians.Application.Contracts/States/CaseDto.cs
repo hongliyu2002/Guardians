@@ -5,6 +5,7 @@ using JetBrains.Annotations;
 namespace Guardians.Application.Contracts.States;
 
 [PublicAPI]
+[Serializable]
 public sealed class CaseDto : EntityDto<CaseId>
 {
     public SceneId SceneID { get; set; } = default!;

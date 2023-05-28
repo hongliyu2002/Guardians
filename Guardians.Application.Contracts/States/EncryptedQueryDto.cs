@@ -4,7 +4,7 @@ namespace Guardians.Application.Contracts.States;
 
 [PublicAPI]
 [Serializable]
-public sealed class SceneForCreationDto
+public sealed class EncryptedQueryDto
 {
-    public string Title { get; set; } = default!;
+    public string Param { get; set; } = string.Empty;
 }

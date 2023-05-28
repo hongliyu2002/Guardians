@@ -60,4 +60,12 @@ public sealed class CasesController : ControllerBase
         var result = await _caseAppService.ListPagedCasesAsync(reporterNo, startDate, endDate, pageNo, pageSize);
         return StatusCode(result.Code, result);
     }
+
+    [HttpPost]
+    [Route("list")]
+    public async Task<IActionResult> GetPaged(EncryptedQueryDto input)
+    {
+        var result = await _caseAppService.GetPagedCasesAsync(input);
+        return StatusCode(result.Code, result);
+    }
 }
