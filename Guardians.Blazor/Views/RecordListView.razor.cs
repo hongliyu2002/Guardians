@@ -1,12 +1,12 @@
 ﻿using System.Reactive.Linq;
 using System.Text;
-using System.Text.Json;
 using Fluxera.Utilities.Extensions;
 using Guardians.Application.Contracts.Utils;
 using Guardians.Blazor.Models;
 using Guardians.Blazor.ViewModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.WebUtilities;
+using Newtonsoft.Json;
 using ReactiveUI;
 using ReactiveUI.Blazor;
 
@@ -58,7 +58,7 @@ public partial class RecordListView : ReactiveInjectableComponentBase<RecordList
             return;
         }
         var decryptedContent = Encryptor.DecryptData(encryptedParam.ToString(), Encryptor.DailyPublicKeyBase64, Encoding.UTF8);
-        var knightInfo = JsonSerializer.Deserialize<KnightInfo>(decryptedContent);
+        var knightInfo = JsonConvert.DeserializeObject<KnightInfo>(decryptedContent);
         if (ViewModel != null)
         {
             if (knightInfo != null)

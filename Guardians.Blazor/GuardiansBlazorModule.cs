@@ -1,4 +1,5 @@
-﻿using Fluxera.Extensions.Hosting;
+﻿using System.Text.Json;
+using Fluxera.Extensions.Hosting;
 using Fluxera.Extensions.Hosting.Modules;
 using Fluxera.Extensions.Hosting.Modules.AspNetCore;
 using Fluxera.Extensions.Hosting.Modules.AspNetCore.HealthChecks;
