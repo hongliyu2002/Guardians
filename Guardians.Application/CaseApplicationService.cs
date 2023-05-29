@@ -10,6 +10,7 @@ using Guardians.Application.Contracts.Utils;
 using Guardians.Domain.Shared;
 using JetBrains.Annotations;
 using MediatR;
+using Newtonsoft.Json;
 
 namespace Guardians.Application;
 
@@ -174,7 +175,7 @@ internal sealed class CaseApplicationService : ICaseApplicationService
     public async Task<ResultDto<PagedListResultDto<CaseDto>>> GetPagedCasesAsync(EncryptedQueryDto input)
     {
         var queryJson = Encryptor.DecryptData(input.Param, Encryptor.DailyPublicKeyBase64, Encoding.UTF8);
-        var queryDto = JsonSerializer.Deserialize<QueryDto>(queryJson);
+        var queryDto = JsonConvert.DeserializeObject<QueryDto>(queryJson);
         if (queryDto == null)
         {
             return new ResultDto<PagedListResultDto<CaseDto>>
