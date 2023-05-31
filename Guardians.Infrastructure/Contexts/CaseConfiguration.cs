@@ -29,6 +29,7 @@ public sealed class CaseConfiguration : IEntityTypeConfiguration<Case>
         builder.Property(c => c.CreatedBy).HasMaxLength(50);
         builder.Property(c => c.LastModifiedBy).HasMaxLength(50);
         builder.Property(c => c.DeletedBy).HasMaxLength(50);
+        builder.Property(c => c.Status).HasConversion<int>();
         builder.HasIndex(c => new { c.ReportedAt, c.IsDeleted });
         builder.UseRepositoryDefaults();
         builder.UseEnumeration(true);

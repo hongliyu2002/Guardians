@@ -3,6 +3,7 @@
 namespace Guardians.Application.Contracts.States;
 
 [PublicAPI]
+[Serializable]
 public sealed class ResultDto<T>
 {
     public int Code { get; set; }

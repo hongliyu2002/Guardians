@@ -1,5 +1,4 @@
-﻿using System.Reactive;
-using System.Reactive.Linq;
+﻿using System.Reactive.Linq;
 using System.Text;
 using Fluxera.Utilities.Extensions;
 using Guardians.Application.Contracts.Utils;
@@ -7,20 +6,15 @@ using Guardians.Blazor.Models;
 using Guardians.Blazor.ViewModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.WebUtilities;
-using MudBlazor;
 using Newtonsoft.Json;
 using ReactiveUI;
 using ReactiveUI.Blazor;
 
 namespace Guardians.Blazor.Views;
 
-public partial class ReportView : ReactiveInjectableComponentBase<ReportViewModel>
+public partial class RecordListView : ReactiveInjectableComponentBase<RecordListViewModel>
 {
     private IDisposable? _viewModelChangedSubscription;
-    private IDisposable? _showSubmitCaseResultHandler;
-
-    [Inject]
-    private ISnackbar Snackbar { get; set; } = default!;
 
     [Inject]
     private NavigationManager NavigationManager { get; set; } = default!;
@@ -46,13 +40,11 @@ public partial class ReportView : ReactiveInjectableComponentBase<ReportViewMode
             return;
         }
         _viewModelChangedSubscription = this.WhenAnyObservable(v => v.ViewModel!.Changed).Throttle(TimeSpan.FromMilliseconds(100)).Subscribe(_ => InvokeAsync(StateHasChanged));
-        _showSubmitCaseResultHandler = ViewModel.ShowSubmitCaseResultInteraction.RegisterHandler(ShowSubmitCaseResult);
     }
 
     private void Deactivate()
     {
         _viewModelChangedSubscription?.Dispose();
-        _showSubmitCaseResultHandler?.Dispose();
     }
 
     protected void ParseKnight()
@@ -72,23 +64,16 @@ public partial class ReportView : ReactiveInjectableComponentBase<ReportViewMode
             if (knightInfo != null)
             {
                 ViewModel.ReporterNo = knightInfo.KnightOid;
-                ViewModel.ReporterName = knightInfo.KnightName;
-                ViewModel.ReporterMobile = knightInfo.KnightMobile;
             }
-            ViewModel.SearchTerm = "All";
         }
     }
 
-    private void ShowSubmitCaseResult(InteractionContext<(string Message, bool Success, Guid? CaseId), Unit> interaction)
+    private void NavigateToDetail()
     {
-        // await DialogService.ShowMessageBox("提交结果", interaction.Input, "确定");
-        Snackbar.Clear();
-        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopCenter;
-        Snackbar.Add(interaction.Input.Message, interaction.Input.Success ? Severity.Normal : Severity.Warning);
-        if (interaction.Input.CaseId.IsNotNull())
+        if (ViewModel is { CurrentCase: not null })
         {
-            NavigationManager.NavigateTo($"/record?id={interaction.Input.CaseId}", false);
+            var currentCase = (CaseItemViewModel)ViewModel.CurrentCase;
+            NavigationManager.NavigateTo($"/record?id={currentCase.Id}", false);
         }
-        interaction.SetOutput(Unit.Default);
     }
 }

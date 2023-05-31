@@ -1,0 +1,140 @@
+﻿@page "/record"
+@using Guardians.Domain.Shared
+@inherits ReactiveInjectableComponentBase<RecordViewModel>
+<PageTitle>进度查询</PageTitle>
+<MudStack Style="padding-top: 10px">
+    @if (ViewModel == null)
+    {
+        <MudText Typo="Typo.subtitle1">拼命加载中...</MudText>
+    }
+    else
+    {
+        @if (ViewModel.CurrentCase == null)
+        {
+            <MudText Typo="Typo.subtitle1">什么都没有...</MudText>
+        }
+        else
+        {
+            <MudPaper Square="true" Elevation="0">
+                <MudTimeline TimelinePosition="TimelinePosition.Left">
+                    @if (ViewModel.CurrentCase.StatusCode == (int)CaseStatus.Reviewing)
+                    {
+                        <MudTimelineItem Variant="Variant.Filled" Color="Color.Info" Size="Size.Small">
+                            <MudText Typo="Typo.subtitle1" Color="Color.Info" Style="font-weight: bolder">申报审核中</MudText>
+                        </MudTimelineItem>
+                    }
+                    else
+                    {
+                        <MudTimelineItem Variant="Variant.Outlined" Size="Size.Small">
+                            <MudText Typo="Typo.subtitle1">申报审核中</MudText>
+                        </MudTimelineItem>
+                    }
+                    @if (ViewModel.CurrentCase.StatusCode == (int)CaseStatus.Processing)
+                    {
+                        <MudTimelineItem Variant="Variant.Filled" Color="Color.Info" Size="Size.Small">
+                            <MudText Typo="Typo.subtitle1" Color="Color.Info" Style="font-weight: bolder">相关部分处理中</MudText>
+                        </MudTimelineItem>
+                    }
+                    else
+                    {
+                        <MudTimelineItem Variant="Variant.Outlined" Size="Size.Small">
+                            <MudText Typo="Typo.subtitle1">相关部分处理中</MudText>
+                        </MudTimelineItem>
+                    }
+                    @if (ViewModel.CurrentCase.StatusCode == (int)CaseStatus.Completed)
+                    {
+                        <MudTimelineItem Variant="Variant.Filled" Color="Color.Info" Size="Size.Small">
+                            <MudText Typo="Typo.subtitle1" Color="Color.Info" Style="font-weight: bolder">已完结</MudText>
+                        </MudTimelineItem>
+                    }
+                    else
+                    {
+                        <MudTimelineItem Variant="Variant.Outlined" Size="Size.Small">
+                            <MudText Typo="Typo.subtitle1">已完结</MudText>
+                        </MudTimelineItem>
+                    }
+                </MudTimeline>
+            </MudPaper>
+            <MudPaper Square="true" Elevation="0">
+                <MudList Clickable="false" DisablePadding="true" Style="color: gray;">
+                    <MudListSubheader>
+                        <MudText Typo="Typo.h6" Style="font-weight: bolder">详细信息</MudText>
+                    </MudListSubheader>
+                    <MudListItem>
+                        <MudGrid>
+                            <MudItem xs="3">
+                                <MudText Typo="Typo.subtitle1">上报场景</MudText>
+                            </MudItem>
+                            <MudItem xs="9">
+                                <MudText Typo="Typo.subtitle1" Align="Align.Right">@ViewModel.CurrentCase.SceneTitle</MudText>
+                            </MudItem>
+                        </MudGrid>
+                    </MudListItem>
+                    <MudListItem>
+                        <MudGrid>
+                            <MudItem xs="3">
+                                <MudText Typo="Typo.subtitle1">上报时间</MudText>
+                            </MudItem>
+                            <MudItem xs="9">
+                                <MudText Typo="Typo.subtitle1" Align="Align.Right">@ViewModel.CurrentCase.ReportedAt.ToString("yyyy-MM-dd HH:mm")</MudText>
+                            </MudItem>
+                        </MudGrid>
+                    </MudListItem>
+                    <MudListItem>
+                        <MudGrid>
+                            <MudItem xs="3">
+                                <MudText Typo="Typo.subtitle1">事件ID</MudText>
+                            </MudItem>
+                            <MudItem xs="9">
+                                <MudText Typo="Typo.subtitle1" Align="Align.Right">@ViewModel.CurrentCase.Id.ToString("D")</MudText>
+                            </MudItem>
+                        </MudGrid>
+                    </MudListItem>
+                    @if (ViewModel.CurrentCase.StatusCode != (int)CaseStatus.Reviewing)
+                    {
+                        <MudListItem>
+                            <MudGrid>
+                                <MudItem xs="3">
+                                    <MudText Typo="Typo.subtitle1">上报地点</MudText>
+                                </MudItem>
+                                <MudItem xs="9">
+                                    <MudText Typo="Typo.subtitle1" Align="Align.Right">@ViewModel.CurrentCase.Address</MudText>
+                                </MudItem>
+                            </MudGrid>
+                        </MudListItem>
+                        <MudListItem>
+                            <MudGrid>
+                                <MudItem xs="3">
+                                    <MudText Typo="Typo.subtitle1">事件详情</MudText>
+                                </MudItem>
+                                <MudItem xs="9">
+                                    <MudText Typo="Typo.subtitle1" Align="Align.Right">@ViewModel.CurrentCase.Description</MudText>
+                                </MudItem>
+                            </MudGrid>
+                        </MudListItem>
+                    }
+                    <MudListItem>
+                        <MudGrid>
+                            <MudItem xs="3">
+                                <MudText Typo="Typo.subtitle1">联系人</MudText>
+                            </MudItem>
+                            <MudItem xs="9">
+                                <MudText Typo="Typo.subtitle1" Align="Align.Right">@ViewModel.CurrentCase.ReporterName</MudText>
+                            </MudItem>
+                        </MudGrid>
+                    </MudListItem>
+                    <MudListItem>
+                        <MudGrid>
+                            <MudItem xs="3">
+                                <MudText Typo="Typo.subtitle1">联系方式</MudText>
+                            </MudItem>
+                            <MudItem xs="9">
+                                <MudText Typo="Typo.subtitle1" Align="Align.Right">@ViewModel.CurrentCase.ReporterMobile</MudText>
+                            </MudItem>
+                        </MudGrid>
+                    </MudListItem>
+                </MudList>
+            </MudPaper>
+        }
+    }
+</MudStack>

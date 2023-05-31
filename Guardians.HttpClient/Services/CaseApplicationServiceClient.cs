@@ -100,12 +100,28 @@ internal sealed class CaseApplicationServiceClient : HttpClientServiceBase, ICas
         try
         {
             var query = new StringBuilder();
-            query.Append($"?pageNo={pageNo}&pageSize={pageSize}&startDate={startDate:yyyy-MM-dd}&endDate={endDate:yyyy-MM-dd}");
+            query.Append($"?pageNo={pageNo}&pageSize={pageSize}&startDate={startDate:yyyy-MM-dd HH:mm:ss}&endDate={endDate:yyyy-MM-dd HH:mm:ss}");
             if (reporterNo.IsNotNullOrEmpty())
             {
                 query.Append($"&reporterNo={reporterNo}");
             }
             var response = await HttpClient.GetAsync($"/api/cases/{query}");
+            var result = await response.Content.ReadAsAsync<ResultDto<PagedListResultDto<CaseDto>>>();
+            return result;
+        }
+        catch (Exception ex)
+        {
+            return new ResultDto<PagedListResultDto<CaseDto>> { Code = 500, Msg = ex.Message };
+        }
+    }
+
+    /// <inheritdoc />
+    public async Task<ResultDto<PagedListResultDto<CaseDto>>> GetPagedCasesAsync(EncryptedQueryDto input)
+    {
+        try
+        {
+            var content = input.AsJsonContent();
+            var response = await HttpClient.PostAsync("/api/cases/list", content);
             var result = await response.Content.ReadAsAsync<ResultDto<PagedListResultDto<CaseDto>>>();
             return result;
         }

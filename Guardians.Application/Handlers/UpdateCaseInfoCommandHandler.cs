@@ -42,6 +42,10 @@ internal sealed class UpdateCaseInfoCommandHandler : ICommandHandler<UpdateCaseI
             @case.Description = command.Input.Description;
             @case.Address = command.Input.Address;
             @case.PhotoUrl = command.Input.PhotoUrl;
+            if (@case.Status != CaseStatus.Completed)
+            {
+                @case.Status = CaseStatus.Processing;
+            }
             await _repository.UpdateAsync(@case, cancellationToken);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
             var caseDto = _mapper.Map<CaseDto>(@case);

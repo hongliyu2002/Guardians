@@ -7,14 +7,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.Application" Version="7.2.5"/>
-        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.AutoMapper" Version="7.2.5"/>
+        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.Application" Version="7.2.5" />
+        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.AutoMapper" Version="7.2.5" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Guardians.Application.Contracts\Guardians.Application.Contracts.csproj"/>
-        <ProjectReference Include="..\Guardians.Domain\Guardians.Domain.csproj"/>
-        <ProjectReference Include="..\Guardians.Infrastructure\Guardians.Infrastructure.csproj"/>
+        <ProjectReference Include="..\Guardians.Application.Contracts\Guardians.Application.Contracts.csproj" />
+        <ProjectReference Include="..\Guardians.Domain\Guardians.Domain.csproj" />
+        <ProjectReference Include="..\Guardians.Infrastructure\Guardians.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

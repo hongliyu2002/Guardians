@@ -1,5 +1,4 @@
 ﻿using Fluxera.Extensions.Hosting.Modules.Application.Contracts;
-using Fluxera.Extensions.Hosting.Modules.Application.Contracts.Dtos;
 using Guardians.Application.Contracts.States;
 using Guardians.Domain.Shared;
 using JetBrains.Annotations;
@@ -20,4 +19,6 @@ public interface ICaseApplicationService : IApplicationService
     Task<ResultDto<CaseDto>> GetCaseAsync(CaseId caseID);
 
     Task<ResultDto<PagedListResultDto<CaseDto>>> ListPagedCasesAsync(string? reporterNo, DateTimeOffset startDate, DateTimeOffset endDate, int pageNo = 1, int pageSize = 10);
+
+    Task<ResultDto<PagedListResultDto<CaseDto>>> GetPagedCasesAsync(EncryptedQueryDto input);
 }

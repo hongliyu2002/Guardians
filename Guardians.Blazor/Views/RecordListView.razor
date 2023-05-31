@@ -1,0 +1,26 @@
+﻿@page "/records"
+@inherits ReactiveInjectableComponentBase<RecordListViewModel>
+<PageTitle>上报记录</PageTitle>
+<MudStack Style="padding-top: 10px">
+    @if (ViewModel == null)
+    {
+        <MudText Typo="Typo.subtitle1">拼命加载中...</MudText>
+    }
+    else
+    {
+        <MudList Clickable="true" @bind-SelectedValue="@ViewModel.CurrentCase">
+            @* <MudListSubheader> *@
+            @*     <MudText Typo="Typo.subtitle2">@ViewModel.ReporterNo</MudText> *@
+            @* </MudListSubheader> *@
+            @foreach (var theCase in ViewModel.Cases)
+            {
+                <MudListItem Value="theCase" OnClick="NavigateToDetail">
+                    <MudPaper Elevation="1">
+                        <CaseItemView ViewModel="theCase" />
+                    </MudPaper>
+                </MudListItem>
+            }
+        </MudList>
+        <MudText Typo="Typo.subtitle2" Align="Align.Center" Style="color: gray">仅显示近3个月的数据</MudText>
+    }
+</MudStack>

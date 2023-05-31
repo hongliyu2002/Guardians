@@ -1,4 +1,5 @@
-﻿using Fluxera.Extensions.Hosting;
+﻿using System.Text.Json;
+using Fluxera.Extensions.Hosting;
 using Fluxera.Extensions.Hosting.Modules;
 using Fluxera.Extensions.Hosting.Modules.AspNetCore;
 using Fluxera.Extensions.Hosting.Modules.AspNetCore.HealthChecks;
@@ -21,6 +22,8 @@ public sealed class GuardiansBlazorModule : ConfigureApplicationModule
     {
         context.Log("AddMudServices", services => services.AddMudServices());
         context.Log("AddReportViewModel", services => services.AddScoped<ReportViewModel>());
+        context.Log("AddRecordViewModel", services => services.AddScoped<RecordViewModel>());
+        context.Log("AddRecordViewModel", services => services.AddScoped<RecordListViewModel>());
     }
 
     /// <inheritdoc />
@@ -36,6 +39,7 @@ public sealed class GuardiansBlazorModule : ConfigureApplicationModule
             context.UseHsts();
         }
         // context.UseHttpsRedirection();
+        context.UseResponseCompression();
         context.UseStaticFiles();
         context.UseRouting();
         context.UseEndpoints();

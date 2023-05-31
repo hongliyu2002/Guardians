@@ -14,7 +14,6 @@ namespace Guardians.Blazor.ViewModels;
 
 public class ReportViewModel : ReactiveObject
 {
-
     /// <inheritdoc />
     public ReportViewModel(ISceneApplicationService sceneAppService, ICaseApplicationService caseAppService)
     {
@@ -22,12 +21,11 @@ public class ReportViewModel : ReactiveObject
         CaseAppService = Guard.Against.Null(caseAppService, nameof(caseAppService));
         var scenesCache = new SourceCache<SceneItemViewModel, Guid>(scene => scene.Id);
         scenesCache.Connect()
-                   .AutoRefresh(scene => scene.Title)
-                   .Sort(SortExpressionComparer<SceneItemViewModel>.Ascending(scene => scene.Id))
                    .Bind(out var scenes)
                    .Subscribe();
         Scenes = scenes;
         this.WhenAnyValue(vm => vm.SearchTerm)
+            .Where(term => term.IsNotNullOrEmpty())
             .DistinctUntilChanged()
             .SelectMany(_ => SceneAppService.ListScenesAsync())
             .Where(result => result.Data != null)
@@ -39,6 +37,7 @@ public class ReportViewModel : ReactiveObject
     #region Properties
 
     public ISceneApplicationService SceneAppService { get; }
+    
     public ICaseApplicationService CaseAppService { get; }
 
     public ReadOnlyObservableCollection<SceneItemViewModel> Scenes { get; }
@@ -82,7 +81,7 @@ public class ReportViewModel : ReactiveObject
 
     #region Interactions
 
-    public Interaction<string, Unit> ShowSubmitCaseResultInteraction { get; } = new();
+    public Interaction<(string Message, bool Success, Guid? CaseId), Unit> ShowSubmitCaseResultInteraction { get; } = new();
 
     #endregion
 
@@ -105,7 +104,7 @@ public class ReportViewModel : ReactiveObject
                                                               ReporterName = ReporterName,
                                                               ReporterMobile = ReporterMobile
                                                           });
-        await ShowSubmitCaseResultInteraction.Handle(result.Code == 200 ? "案件提交成功" : "案件提交失败");
+        await ShowSubmitCaseResultInteraction.Handle(result.Code == 200 ? (Message: "上报成功", Success: true, CaseId: result.Data?.ID.Value) : (Message: "上报失败，请重试", Success: false, CaseId: null));
     }
 
     #endregion

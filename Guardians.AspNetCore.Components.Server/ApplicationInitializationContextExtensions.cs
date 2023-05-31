@@ -2,6 +2,7 @@
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.ResponseCaching;
+using Microsoft.AspNetCore.ResponseCompression;
 
 namespace Guardians.AspNetCore.Components.Server;
 
@@ -63,6 +64,16 @@ public static class ApplicationInitializationContextExtensions
     {
         var app = context.GetApplicationBuilder();
         context.Log("UseResponseCaching", _ => app.UseResponseCaching());
+        return context;
+    }
+    
+    /// <summary>
+    ///     Adds the <see cref="ResponseCompressionMiddleware" /> for caching HTTP responses.
+    /// </summary>
+    public static IApplicationInitializationContext UseResponseCompression(this IApplicationInitializationContext context)
+    {
+        var app = context.GetApplicationBuilder();
+        context.Log("UseResponseCompression", _ => app.UseResponseCompression());
         return context;
     }
 }
