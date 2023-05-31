@@ -24,7 +24,7 @@ public class RecordListViewModel : ReactiveObject
         this.WhenAnyValue(vm => vm.ReporterNo)
             .Where(no => no.IsNotNullOrEmpty())
             .DistinctUntilChanged()
-            .SelectMany(no => CaseAppService.ListPagedCasesAsync(no, DateTimeOffset.Now.AddMonths(-3), DateTimeOffset.Now, 1, 10000))
+            .SelectMany(no => CaseAppService.ListPagedCasesAsync(no.Replace("+", "%2B"), DateTimeOffset.Now.AddMonths(-3), DateTimeOffset.Now, 1, 10000))
             .Where(result => result.Data != null)
             .Select(result => result.Data!.Items)
             .Subscribe(casesList => casesCache.AddOrUpdateWith(casesList));
