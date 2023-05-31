@@ -65,7 +65,7 @@ public partial class ReportView : ReactiveInjectableComponentBase<ReportViewMode
         {
             return;
         }
-        var decryptedContent = Encryptor.DecryptData(encryptedParam.ToString(), Encryptor.DailyPublicKeyBase64, Encoding.UTF8);
+        var decryptedContent = Encryptor.DecryptData(encryptedParam.ToString(), Encryptor.ProductPublicKeyBase64, Encoding.UTF8);
         var knightInfo = JsonConvert.DeserializeObject<KnightInfo>(decryptedContent);
         if (ViewModel != null)
         {

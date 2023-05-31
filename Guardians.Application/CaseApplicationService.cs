@@ -174,7 +174,7 @@ internal sealed class CaseApplicationService : ICaseApplicationService
     /// <inheritdoc />
     public async Task<ResultDto<PagedListResultDto<CaseDto>>> GetPagedCasesAsync(EncryptedQueryDto input)
     {
-        var queryJson = Encryptor.DecryptData(input.Param, Encryptor.DailyPublicKeyBase64, Encoding.UTF8);
+        var queryJson = Encryptor.DecryptData(input.Param, Encryptor.ProductPublicKeyBase64, Encoding.UTF8);
         var queryDto = JsonConvert.DeserializeObject<QueryDto>(queryJson);
         if (queryDto == null)
         {
