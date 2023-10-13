@@ -7,10 +7,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.Domain" Version="7.2.5"/>
-        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.Persistence" Version="7.2.5"/>
-        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.Principal" Version="7.2.5"/>
-        <PackageReference Include="Fluxera.Extensions.Validation.FluentValidation" Version="7.2.1"/>
+        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.Domain" Version="7.3.0"/>
+        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.Persistence" Version="7.3.0"/>
+        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.Principal" Version="7.3.0"/>
+        <PackageReference Include="Fluxera.Extensions.Validation.FluentValidation" Version="7.2.4" />
     </ItemGroup>
 
     <ItemGroup>

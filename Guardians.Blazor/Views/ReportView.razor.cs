@@ -49,6 +49,8 @@ public partial class ReportView : ReactiveInjectableComponentBase<ReportViewMode
         _showSubmitCaseResultHandler = ViewModel.ShowSubmitCaseResultInteraction.RegisterHandler(ShowSubmitCaseResult);
     }
 
+
+
     private void Deactivate()
     {
         _viewModelChangedSubscription?.Dispose();
@@ -79,7 +81,7 @@ public partial class ReportView : ReactiveInjectableComponentBase<ReportViewMode
         }
     }
 
-    private void ShowSubmitCaseResult(InteractionContext<(string Message, bool Success, Guid? CaseId), Unit> interaction)
+    private void ShowSubmitCaseResult(IInteractionContext<(string Message, bool Success, Guid? CaseId), Unit> interaction)
     {
         // await DialogService.ShowMessageBox("提交结果", interaction.Input, "确定");
         Snackbar.Clear();

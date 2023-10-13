@@ -8,8 +8,8 @@
 
     <ItemGroup>
         <PackageReference Include="FluentResults.Extensions.AspNetCore" Version="0.1.0"/>
-        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.AspNetCore.HttpApi" Version="7.2.5"/>
-        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.AspNetCore.HttpApi.OData" Version="7.2.5"/>
+        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.AspNetCore.HttpApi" Version="7.3.0"/>
+        <PackageReference Include="Fluxera.Extensions.Hosting.Modules.AspNetCore.HttpApi.OData" Version="7.3.0"/>
     </ItemGroup>
 
     <ItemGroup>
